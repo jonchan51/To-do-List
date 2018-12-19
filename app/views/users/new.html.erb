@@ -1,2 +1,42 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+
+<%= form_with model: @user, local: true, url: signup_path do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited this
+        article from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
+  </p>
+
+  <p>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </p>
+
+  <p>
+    <%= form.label :password_confirmation, "Confirmation" %>
+    <%= form.password_field :password_confirmation %>
+  </p>
+
+  <p>
+    <%= form.submit "Create my account" %>
+  </p>
+<% end %>
