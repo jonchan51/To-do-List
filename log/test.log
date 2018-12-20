@@ -1,0 +1,298 @@
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "categories" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "categorisings"[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "categorisings" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "task_id" integer, "category_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE  INDEX "index_categorisings_on_category_id" ON "categorisings" ("category_id")[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE  INDEX "index_categorisings_on_task_id" ON "categorisings" ("task_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "tasks"[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20181219140035)[0m
+  [1m[35m (4.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20181217085946),
+(20181219140009),
+(20181219135843);
+
+[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2018-12-20 02:49:02.500384"], ["updated_at", "2018-12-20 02:49:02.500384"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "tasks"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "categorisings"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:49:02.572189', '2018-12-20 02:49:02.572189', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:49:02.572189', '2018-12-20 02:49:02.572189', 298486374)[0m
+  [1m[35m (1.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.9ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "tasks"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "categorisings"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:49:02.809334', '2018-12-20 02:49:02.809334', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:49:02.809334', '2018-12-20 02:49:02.809334', 298486374)[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "tasks"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "categorisings"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:51:06.630309', '2018-12-20 02:51:06.630309', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:51:06.630309', '2018-12-20 02:51:06.630309', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 02:51:06.632540', '2018-12-20 02:51:06.632540', 980190962)[0m
+  [1m[36mFixture Insert (0.2ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 02:51:06.632540', '2018-12-20 02:51:06.632540', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 02:51:06.633886', '2018-12-20 02:51:06.633886', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 02:51:06.633886', '2018-12-20 02:51:06.633886', 298486374, 298486374, 298486374)[0m
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+WelcomeControllerTest: test_should_get_index
+--------------------------------------------
+Started GET "/welcome/index" for 127.0.0.1 at 2018-12-20 10:51:06 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 288ms (Views: 279.5ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------
+CategoryTest: test_name_should_be_present
+-----------------------------------------
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "tasks"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "categorisings"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:52:21.442052', '2018-12-20 02:52:21.442052', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:52:21.442052', '2018-12-20 02:52:21.442052', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 02:52:21.444203', '2018-12-20 02:52:21.444203', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 02:52:21.444203', '2018-12-20 02:52:21.444203', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 02:52:21.446159', '2018-12-20 02:52:21.446159', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 02:52:21.446159', '2018-12-20 02:52:21.446159', 298486374, 298486374, 298486374)[0m
+  [1m[35m (6.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+WelcomeControllerTest: test_should_get_index
+--------------------------------------------
+Started GET "/welcome/index" for 127.0.0.1 at 2018-12-20 10:52:21 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 226ms (Views: 215.3ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------
+CategoryTest: test_name_should_be_present
+-----------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "tasks"[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "categorisings"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:54:48.346553', '2018-12-20 02:54:48.346553', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:54:48.346553', '2018-12-20 02:54:48.346553', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 02:54:48.348732', '2018-12-20 02:54:48.348732', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 02:54:48.348732', '2018-12-20 02:54:48.348732', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 02:54:48.350430', '2018-12-20 02:54:48.350430', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 02:54:48.350430', '2018-12-20 02:54:48.350430', 298486374, 298486374, 298486374)[0m
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------
+CategoryTest: test_name_should_be_present
+-----------------------------------------
+  [1m[36mCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", ""], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------
+CategoryTest: test_name_should_be_unique
+----------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "Run"], ["LIMIT", 1]]
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Run"], ["created_at", "2018-12-20 02:54:48.372892"], ["updated_at", "2018-12-20 02:54:48.372892"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "RUN"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+WelcomeControllerTest: test_should_get_index
+--------------------------------------------
+Started GET "/welcome/index" for 127.0.0.1 at 2018-12-20 10:54:48 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 168ms (Views: 157.9ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.7ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "tasks"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "categorisings"[0m
+  [1m[36mFixture Insert (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:59:53.120426', '2018-12-20 02:59:53.120426', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 02:59:53.120426', '2018-12-20 02:59:53.120426', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 02:59:53.122513', '2018-12-20 02:59:53.122513', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 02:59:53.122513', '2018-12-20 02:59:53.122513', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 02:59:53.124090', '2018-12-20 02:59:53.124090', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 02:59:53.124090', '2018-12-20 02:59:53.124090', 298486374, 298486374, 298486374)[0m
+  [1m[35m (5.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------------------
+CategoryTest: test_name_should_be_saved_in_correct_format
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "rUn"], ["LIMIT", 1]]
+  [1m[36mCategory Create (0.8ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Run"], ["created_at", "2018-12-20 02:59:53.143231"], ["updated_at", "2018-12-20 02:59:53.143231"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.9ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------
+CategoryTest: test_name_should_be_present
+-----------------------------------------
+  [1m[36mCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", ""], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------
+CategoryTest: test_name_should_be_unique
+----------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "Run"], ["LIMIT", 1]]
+  [1m[36mCategory Create (0.9ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Run"], ["created_at", "2018-12-20 02:59:53.152503"], ["updated_at", "2018-12-20 02:59:53.152503"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "RUN"], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+WelcomeControllerTest: test_should_get_index
+--------------------------------------------
+Started GET "/welcome/index" for 127.0.0.1 at 2018-12-20 10:59:53 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 177ms (Views: 168.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.6ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "tasks"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "categorisings"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 03:00:09.340128', '2018-12-20 03:00:09.340128', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 03:00:09.340128', '2018-12-20 03:00:09.340128', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 03:00:09.342257', '2018-12-20 03:00:09.342257', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 03:00:09.342257', '2018-12-20 03:00:09.342257', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 03:00:09.343790', '2018-12-20 03:00:09.343790', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 03:00:09.343790', '2018-12-20 03:00:09.343790', 298486374, 298486374, 298486374)[0m
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------
+CategoryTest: test_name_should_be_unique
+----------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "Run"], ["LIMIT", 1]]
+  [1m[36mCategory Create (0.8ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Run"], ["created_at", "2018-12-20 03:00:09.359953"], ["updated_at", "2018-12-20 03:00:09.359953"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "RUN"], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------------------
+CategoryTest: test_name_should_be_saved_in_correct_format
+---------------------------------------------------------
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "rUn"], ["LIMIT", 1]]
+  [1m[36mCategory Create (0.7ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Run"], ["created_at", "2018-12-20 03:00:09.368000"], ["updated_at", "2018-12-20 03:00:09.368000"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.8ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------
+CategoryTest: test_name_should_be_present
+-----------------------------------------
+  [1m[36mCategory Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", ""], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+WelcomeControllerTest: test_should_get_index
+--------------------------------------------
+Started GET "/welcome/index" for 127.0.0.1 at 2018-12-20 11:00:09 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 208ms (Views: 199.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.0ms)[0m  [1m[35mPRAGMA foreign_keys[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = OFF[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mFixture Delete (0.2ms)[0m  [1m[31mDELETE FROM "categories"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "tasks"[0m
+  [1m[36mFixture Delete (0.1ms)[0m  [1m[31mDELETE FROM "categorisings"[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 03:00:20.553697', '2018-12-20 03:00:20.553697', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at", "id") VALUES ('MyString', '2018-12-20 03:00:20.553697', '2018-12-20 03:00:20.553697', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 03:00:20.555945', '2018-12-20 03:00:20.555945', 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "id") VALUES ('MyText', '2018-12-20 03:00:20.555945', '2018-12-20 03:00:20.555945', 298486374)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 03:00:20.557325', '2018-12-20 03:00:20.557325', 980190962, 980190962, 980190962)[0m
+  [1m[36mFixture Insert (0.1ms)[0m  [1m[32mINSERT INTO "categorisings" ("created_at", "updated_at", "id", "task_id", "category_id") VALUES ('2018-12-20 03:00:20.557325', '2018-12-20 03:00:20.557325', 298486374, 298486374, 298486374)[0m
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mPRAGMA foreign_keys = 1[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+--------------------------------------------
+WelcomeControllerTest: test_should_get_index
+--------------------------------------------
+Started GET "/welcome/index" for 127.0.0.1 at 2018-12-20 11:00:20 +0800
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 166ms (Views: 157.6ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+-----------------------------------------
+CategoryTest: test_name_should_be_present
+-----------------------------------------
+  [1m[36mCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", ""], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+---------------------------------------------------------
+CategoryTest: test_name_should_be_saved_in_correct_format
+---------------------------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "rUn"], ["LIMIT", 1]]
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Run"], ["created_at", "2018-12-20 03:00:20.839614"], ["updated_at", "2018-12-20 03:00:20.839614"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+----------------------------------------
+CategoryTest: test_name_should_be_unique
+----------------------------------------
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "Run"], ["LIMIT", 1]]
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Run"], ["created_at", "2018-12-20 03:00:20.843941"], ["updated_at", "2018-12-20 03:00:20.843941"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mCategory Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE LOWER("categories"."name") = LOWER(?) LIMIT ?[0m  [["name", "RUN"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m

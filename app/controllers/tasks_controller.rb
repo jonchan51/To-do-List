@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @tasks = Task.filter(params[:category_id])
   end
 
   def show
@@ -44,6 +44,6 @@ class TasksController < ApplicationController
 
   private
     def task_params
-      params.require(:task).permit(:title, :category_list)
+      params.require(:task).permit(:title, :category_list, :category_id)
     end
 end
