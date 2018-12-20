@@ -17,11 +17,15 @@ class Task < ApplicationRecord
     end
   end
 
-  def self.filter(category_id)
+  # find a way to factor this out, a bit repetitive
+  def self.filter(category_id, completed)
     if category_id and category_id != ""
-      Category.find(category_id).tasks.order(duedate: :asc)
+      Category.find(category_id).
+        tasks.where(completed: completed).order(duedate: :asc)
+    elsif completed
+      Task.where(completed: completed).order(duedate: :asc)
     else
-      all.order(duedate: :asc)
+      Task.where(completed: 0).order(duedate: :asc)
     end
   end
 

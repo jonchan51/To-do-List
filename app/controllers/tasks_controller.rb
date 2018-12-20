@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.filter(params[:category_id])
+    @tasks = Task.filter(params[:category_id], params[:completed])
   end
 
   def show
@@ -45,6 +45,6 @@ class TasksController < ApplicationController
   private
     def task_params
       params.require(:task).permit(:title, :category_list, :category_id,
-                                   :duedate)
+                                   :duedate, :completed)
     end
 end

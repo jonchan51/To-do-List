@@ -13,5 +13,10 @@
   <%= @task.category_list %>
 </p>
 
+<p>
+  <strong>Completed:</strong>
+  <%= @task.completed ? 'Yes' : 'No' %>
+</p>
+
 <%= link_to 'Edit', edit_task_path(@task) %> |
 <%= link_to 'Back', tasks_path %>
