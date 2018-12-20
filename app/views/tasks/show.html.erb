@@ -4,6 +4,11 @@
 </p>
  
 <p>
+  <strong>Due Date:</strong>
+  <%= @task.duedate.strftime("%A, %d %b %y - %l:%M %P") %>
+</p>
+
+<p>
   <strong>Category:</strong>
   <%= @task.category_list %>
 </p>

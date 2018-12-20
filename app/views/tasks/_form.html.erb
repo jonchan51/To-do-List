@@ -18,6 +18,12 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </p>
+
+  <p>
+    <%= f.label :duedate, "Due Date" %><br>
+    <%= f.datetime_select :duedate, start_year: Time.now.year, 
+      default: { :hour => 23, :minute => 59 }%>
+  </p>
  
   <p>
     <%= f.label :category_list, "Category" %><br>
