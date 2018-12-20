@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_17_085946) do
+ActiveRecord::Schema.define(version: 2018_12_19_140035) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categorisings", force: :cascade do |t|
+    t.integer "task_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_categorisings_on_category_id"
+    t.index ["task_id"], name: "index_categorisings_on_task_id"
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.text "title"
-    t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -5,14 +5,12 @@
 <table>
   <tr>
     <th>Title</th>
-    <th>Text</th>
     <th></th>
   </tr>
  
   <% @tasks.each do |task| %>
     <tr>
       <td><%= task.title %></td>
-      <td><%= task.text %></td>
       <td><%= link_to 'Show', task_path(task) %></td>
       <td><%= link_to 'Edit', edit_task_path(task) %></td>
       <td><%= link_to 'Destory', task_path(task),
