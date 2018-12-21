@@ -26,10 +26,22 @@
   </p>
  
   <p>
-    <%= f.label :category_list, "Category" %><br>
-    <%= f.text_field :category_list %>
+    <%= f.label :category_list, "Select Categories" %><br>
+    <%= f.collection_select(:category_list, 
+                            Category.all.order(name: :asc), :id, :name,
+                            { :selected => @task.categories.map do |t|
+                                             t.id
+                                           end,
+                              :include_blank => true },
+                            { :multiple => true }) %>
   </p>
- 
+
+  <p>
+  <%= f.label :new_category_list, "or create new Categories
+                                   (seperated by ',')" %><br>
+    <%= f.text_field :new_category_list %>
+  </p>
+
   <p>
     <%= f.label :completed %>
     <%= f.check_box :completed %>

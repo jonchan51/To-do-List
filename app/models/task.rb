@@ -10,10 +10,19 @@ class Task < ApplicationRecord
     categories.map(&:name).join(', ')
   end
 
+  # for _form. Selects categories to associate with task.
+  def category_list=(ids)
+    # to reject empty strings
+    ids = ids.reject(&:empty?)
+    self.categories = ids.map do |i|
+      Category.find(i)
+    end
+  end
+
   # for _form. Checks whether category exists. Otherwise, make new.
-  def category_list=(names)
-    self.categories = names.split(',').map do |n|
-      Category.where(name: n.strip).first_or_create!
+  def new_category_list=(names)
+    self.categories += names.split(',').map do |n|
+      Category.where(name: n.downcase.strip.titleize).first_or_create!
     end
   end
 
