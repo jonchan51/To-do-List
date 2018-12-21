@@ -43,8 +43,10 @@
   </p>
 
   <p>
-    <%= f.label :completed %>
-    <%= f.check_box :completed %>
+    <% if @task.persisted? %>
+      <%= f.label :completed %>
+      <%= f.check_box :completed %>
+    <% end %>
   </p>
 
   <p>

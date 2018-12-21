@@ -46193,3 +46193,249 @@ Processing by TasksController#index as HTML
 Completed 200 OK in 39ms (Views: 36.9ms | ActiveRecord: 0.5ms)
 
 
+Started GET "/tasks/new" for 127.0.0.1 at 2018-12-21 21:54:09 +0800
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /var/lib/gems/2.5.0/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by TasksController#new as HTML
+  Rendering tasks/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_form.html.erb:30
+  Rendered tasks/_form.html.erb (29.2ms)
+  Rendered tasks/new.html.erb within layouts/application (30.7ms)
+Completed 200 OK in 275ms (Views: 249.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2018-12-21 21:57:02 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_filter.html.erb:4
+  Rendered tasks/_filter.html.erb (16.1ms)
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = ? ORDER BY "tasks"."duedate" ASC[0m  [["completed", 0]]
+  ↳ app/views/tasks/index.html.erb:13
+  Rendered tasks/index.html.erb within layouts/application (22.6ms)
+Completed 200 OK in 44ms (Views: 42.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/tasks/new" for 127.0.0.1 at 2018-12-21 23:02:00 +0800
+Processing by TasksController#new as HTML
+  Rendering tasks/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_form.html.erb:30
+  Rendered tasks/_form.html.erb (13.3ms)
+  Rendered tasks/new.html.erb within layouts/application (14.4ms)
+Completed 200 OK in 34ms (Views: 32.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/tasks" for 127.0.0.1 at 2018-12-21 23:02:05 +0800
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0UCMWHrnY6SNrF5M3uYUFUR4WOjFF+JP95LiVR0MfalbHaWi4iHFJCsHPdbgYksnyU82tiNicZdAKt20oBZ6qg==", "task"=>{"title"=>"dsd", "duedate(1i)"=>"2018", "duedate(2i)"=>"12", "duedate(3i)"=>"21", "duedate(4i)"=>"23", "duedate(5i)"=>"59", "category_list"=>[""], "new_category_list"=>"", "completed"=>"0"}, "commit"=>"Create Task"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tasks_controller.rb:21
+  [1m[36mTask Create (1.5ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "duedate", "completed") VALUES (?, ?, ?, ?, ?)[0m  [["title", "dsd"], ["created_at", "2018-12-21 15:02:05.877511"], ["updated_at", "2018-12-21 15:02:05.877511"], ["duedate", "2018-12-21 15:59:00"], ["completed", 0]]
+  ↳ app/controllers/tasks_controller.rb:21
+  [1m[35m (5036.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tasks_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/tasks_controller.rb:21
+Completed 500 Internal Server Error in 5043ms (ActiveRecord: 5038.0ms)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::BusyException: database is locked: commit transaction):
+  
+app/controllers/tasks_controller.rb:21:in `create'
+Started POST "/tasks" for 127.0.0.1 at 2018-12-21 23:02:19 +0800
+Processing by TasksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0UCMWHrnY6SNrF5M3uYUFUR4WOjFF+JP95LiVR0MfalbHaWi4iHFJCsHPdbgYksnyU82tiNicZdAKt20oBZ6qg==", "task"=>{"title"=>"dsd", "duedate(1i)"=>"2018", "duedate(2i)"=>"12", "duedate(3i)"=>"21", "duedate(4i)"=>"23", "duedate(5i)"=>"59", "category_list"=>[""], "new_category_list"=>"", "completed"=>"0"}, "commit"=>"Create Task"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/tasks_controller.rb:21
+  [1m[36mTask Create (1.2ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "created_at", "updated_at", "duedate", "completed") VALUES (?, ?, ?, ?, ?)[0m  [["title", "dsd"], ["created_at", "2018-12-21 15:02:19.517700"], ["updated_at", "2018-12-21 15:02:19.517700"], ["duedate", "2018-12-21 15:59:00"], ["completed", 0]]
+  ↳ app/controllers/tasks_controller.rb:21
+  [1m[35m (3.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/tasks_controller.rb:21
+Redirected to http://localhost:3000/tasks/15
+Completed 302 Found in 9ms (ActiveRecord: 4.7ms)
+
+
+Started GET "/tasks/15" for 127.0.0.1 at 2018-12-21 23:02:19 +0800
+Processing by TasksController#show as HTML
+  Parameters: {"id"=>"15"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 15], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:7
+  Rendering tasks/show.html.erb within layouts/application
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" INNER JOIN "categorisings" ON "categories"."id" = "categorisings"."category_id" WHERE "categorisings"."task_id" = ?[0m  [["task_id", 15]]
+  ↳ app/models/task.rb:10
+  Rendered tasks/show.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 27ms (Views: 24.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2018-12-21 23:02:21 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_filter.html.erb:4
+  Rendered tasks/_filter.html.erb (13.6ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = ? ORDER BY "tasks"."duedate" ASC[0m  [["completed", 0]]
+  ↳ app/views/tasks/index.html.erb:13
+  Rendered tasks/index.html.erb within layouts/application (19.7ms)
+Completed 200 OK in 38ms (Views: 35.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/tasks/new" for 127.0.0.1 at 2018-12-21 23:11:48 +0800
+Processing by TasksController#new as HTML
+  Rendering tasks/new.html.erb within layouts/application
+  Rendered tasks/_form.html.erb (8.7ms)
+  Rendered tasks/new.html.erb within layouts/application (9.8ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms)
+
+
+  
+SyntaxError (/home/jonchan/Desktop/ruby/todo2/app/views/tasks/_form.html.erb:46: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+....append=( if @user.persisted? );@output_buffer.safe_append='
+...                              ^
+/home/jonchan/Desktop/ruby/todo2/app/views/tasks/_form.html.erb:49: syntax error, unexpected keyword_end, expecting ')'
+'.freeze;     end 
+              ^~~
+/home/jonchan/Desktop/ruby/todo2/app/views/tasks/_form.html.erb:56: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+          ^~~
+/home/jonchan/Desktop/ruby/todo2/app/views/tasks/_form.html.erb:58: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+          ^~~~~~
+/home/jonchan/Desktop/ruby/todo2/app/views/tasks/_form.html.erb:60: syntax error, unexpected keyword_end, expecting ')'
+          end
+          ^~~):
+  
+app/views/tasks/_form.html.erb:46: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+app/views/tasks/_form.html.erb:49: syntax error, unexpected keyword_end, expecting ')'
+app/views/tasks/_form.html.erb:56: syntax error, unexpected keyword_end, expecting ')'
+app/views/tasks/_form.html.erb:58: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/tasks/_form.html.erb:60: syntax error, unexpected keyword_end, expecting ')'
+app/views/tasks/new.html.erb:3:in `_app_views_tasks_new_html_erb___854106673887837500_69837528210280'
+Started GET "/tasks/new" for 127.0.0.1 at 2018-12-21 23:12:01 +0800
+Processing by TasksController#new as HTML
+  Rendering tasks/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_form.html.erb:30
+  Rendered tasks/_form.html.erb (16.0ms)
+  Rendered tasks/new.html.erb within layouts/application (16.9ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.4ms)
+
+
+  
+ActionView::Template::Error (undefined method `persisted?' for nil:NilClass):
+    43:   </p>
+    44: 
+    45:   <p>
+    46:     <% if @user.persisted? %>
+    47:       <%= f.label :completed %>
+    48:       <%= f.check_box :completed %>
+    49:     <% end %>
+  
+app/views/tasks/_form.html.erb:46:in `block in _app_views_tasks__form_html_erb__597019339436958167_69837411253020'
+app/views/tasks/_form.html.erb:1:in `_app_views_tasks__form_html_erb__597019339436958167_69837411253020'
+app/views/tasks/new.html.erb:3:in `_app_views_tasks_new_html_erb___854106673887837500_69837411299900'
+Started GET "/tasks/new" for 127.0.0.1 at 2018-12-21 23:12:12 +0800
+Processing by TasksController#new as HTML
+  Rendering tasks/new.html.erb within layouts/application
+  [1m[36mCategory Load (0.8ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_form.html.erb:30
+  Rendered tasks/_form.html.erb (12.0ms)
+  Rendered tasks/new.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 38ms (Views: 35.6ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2018-12-21 23:12:18 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_filter.html.erb:4
+  Rendered tasks/_filter.html.erb (14.1ms)
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = ? ORDER BY "tasks"."duedate" ASC[0m  [["completed", 0]]
+  ↳ app/views/tasks/index.html.erb:13
+  Rendered tasks/index.html.erb within layouts/application (22.1ms)
+Completed 200 OK in 41ms (Views: 38.3ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/tasks/4/edit" for 127.0.0.1 at 2018-12-21 23:12:19 +0800
+Processing by TasksController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:15
+  Rendering tasks/edit.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" INNER JOIN "categorisings" ON "categories"."id" = "categorisings"."category_id" WHERE "categorisings"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/views/tasks/_form.html.erb:32
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_form.html.erb:30
+  Rendered tasks/_form.html.erb (16.6ms)
+  Rendered tasks/edit.html.erb within layouts/application (18.4ms)
+Completed 200 OK in 43ms (Views: 41.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2018-12-21 23:12:23 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_filter.html.erb:4
+  Rendered tasks/_filter.html.erb (15.3ms)
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = ? ORDER BY "tasks"."duedate" ASC[0m  [["completed", 0]]
+  ↳ app/views/tasks/index.html.erb:13
+  Rendered tasks/index.html.erb within layouts/application (20.9ms)
+Completed 200 OK in 41ms (Views: 39.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/tasks/8/edit" for 127.0.0.1 at 2018-12-21 23:12:25 +0800
+Processing by TasksController#edit as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:15
+  Rendering tasks/edit.html.erb within layouts/application
+  [1m[36mCategory Load (0.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories" INNER JOIN "categorisings" ON "categories"."id" = "categorisings"."category_id" WHERE "categorisings"."task_id" = ?[0m  [["task_id", 8]]
+  ↳ app/views/tasks/_form.html.erb:32
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_form.html.erb:30
+  Rendered tasks/_form.html.erb (16.6ms)
+  Rendered tasks/edit.html.erb within layouts/application (17.9ms)
+Completed 200 OK in 37ms (Views: 34.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2018-12-21 23:12:28 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.3ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_filter.html.erb:4
+  Rendered tasks/_filter.html.erb (10.9ms)
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = ? ORDER BY "tasks"."duedate" ASC[0m  [["completed", 0]]
+  ↳ app/views/tasks/index.html.erb:13
+  Rendered tasks/index.html.erb within layouts/application (16.1ms)
+Completed 200 OK in 36ms (Views: 34.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/tasks/4/edit" for 127.0.0.1 at 2018-12-21 23:19:11 +0800
+Processing by TasksController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT  "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/tasks_controller.rb:15
+  Rendering tasks/edit.html.erb within layouts/application
+  [1m[36mCategory Load (3.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" INNER JOIN "categorisings" ON "categories"."id" = "categorisings"."category_id" WHERE "categorisings"."task_id" = ?[0m  [["task_id", 4]]
+  ↳ app/views/tasks/_form.html.erb:32
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_form.html.erb:30
+  Rendered tasks/_form.html.erb (19.4ms)
+  Rendered tasks/edit.html.erb within layouts/application (20.6ms)
+Completed 200 OK in 41ms (Views: 34.7ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/tasks" for 127.0.0.1 at 2018-12-21 23:19:14 +0800
+Processing by TasksController#index as HTML
+  Rendering tasks/index.html.erb within layouts/application
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" ORDER BY "categories"."name" ASC[0m
+  ↳ app/views/tasks/_filter.html.erb:4
+  Rendered tasks/_filter.html.erb (9.1ms)
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."completed" = ? ORDER BY "tasks"."duedate" ASC[0m  [["completed", 0]]
+  ↳ app/views/tasks/index.html.erb:13
+  Rendered tasks/index.html.erb within layouts/application (14.7ms)
+Completed 200 OK in 43ms (Views: 40.9ms | ActiveRecord: 0.4ms)
+
+
