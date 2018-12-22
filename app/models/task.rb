@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  before_create { self.completed = 0 }
   has_many :categorisings, dependent: :delete_all
   has_many :categories, through: :categorisings
   validates :title, presence: true
