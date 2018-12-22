@@ -1,5 +1,13 @@
 <%= form_with model: @category, method: :get, local: true do |f| %>
   <p>
+    <%= f.label :priority %>
+    <%= f.select(:priority, options_for_select([['None', 0],
+                                                ['Low', 1],
+                                                ['Medium', 2],
+                                                ['High', 3]],
+                                                params[:priority]),
+                            { :include_blank => true }) %>
+
     <%= f.label :category_id, "Category: " %>
     <%= f.collection_select(:category_id, 
                             Category.all.order(name: :asc), :id, :name,

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.filter(params[:category_id], params[:completed])
+    @tasks = Task.filter(params)
   end
 
   def show
@@ -9,6 +9,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @task.priority = 0
   end
 
   def edit
@@ -47,6 +48,6 @@ class TasksController < ApplicationController
       params.require(:task).permit(:title, :category_id, :duedate,
                                    { :category_list => [] }, 
                                    :new_category_list, :completed,
-                                   :comments)
+                                   :comments, :priority)
     end
 end

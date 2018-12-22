@@ -11,6 +11,14 @@ class Task < ApplicationRecord
     categories.map(&:name).join(', ')
   end
 
+  def priority_list 
+    ['None', 'Low', 'Medium', 'High']
+  end
+
+  def priority_level
+    priority_list[self.priority]
+  end
+
   # for _form. Selects categories to associate with task.
   def category_list=(ids)
     # to reject empty strings
@@ -28,15 +36,16 @@ class Task < ApplicationRecord
   end
 
   # find a way to factor this out, a bit repetitive
-  def self.filter(category_id, completed)
-    if category_id and category_id != ""
-      Category.find(category_id).
-        tasks.where(completed: completed).order(duedate: :asc)
-    elsif completed
-      Task.where(completed: completed).order(duedate: :asc)
-    else
-      Task.where(completed: 0).order(duedate: :asc)
-    end
+  def self.filter(params)
+    priority = params[:priority]
+    category_id = params[:category_id]
+    completed = params[:completed].blank? ? 0 : params[:completed]
+
+    task = !category_id.blank? ? Category.find(category_id).tasks : Task
+    task = task.where(completed: completed)
+    task = !priority.blank? ? task.where(priority: priority) : task
+    task = task.order(duedate: :asc, priority: :desc, title: :asc)
+
   end
 
   # duedate checks

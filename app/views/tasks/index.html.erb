@@ -14,12 +14,14 @@
   <tr>
     <th>Title</th>
     <th>Due Date</th>
+    <th>Priority</th>
   </tr>
  
   <% @tasks.each do |task| %>
     <tr>
       <td><%= task.title %></td>
       <td><%= task.duedate.strftime("%A, %d %b %y - %l:%M %P") %></td>
+      <td><%= task.priority_level %></td>
       <td><%= link_to 'Show', task_path(task) %></td>
       <td><%= link_to 'Edit', edit_task_path(task) %></td>
       <td><%= link_to 'Destory', task_path(task),
