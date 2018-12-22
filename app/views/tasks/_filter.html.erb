@@ -1,6 +1,14 @@
 <%= form_with model: @category, method: :get, local: true do |f| %>
   <p>
-    <%= f.label :priority %>
+    <%= f.label :date_group, "Due: " %>
+    <%= f.select(:date_group, options_for_select(['Next 7 Days',
+                                                  'Anytime'],
+                                                  params[:date_group]),
+                              { :include_blank => 'Today' }) %>
+  </p>
+
+  <p>
+    <%= f.label :priority, "Priority: " %>
     <%= f.select(:priority, options_for_select([['None', 0],
                                                 ['Low', 1],
                                                 ['Medium', 2],

@@ -40,12 +40,16 @@ class Task < ApplicationRecord
     priority = params[:priority]
     category_id = params[:category_id]
     completed = params[:completed].blank? ? 0 : params[:completed]
+    date_group = params[:date_group]
 
     task = !category_id.blank? ? Category.find(category_id).tasks : Task
+    task = date_group == 'Anytime' ? task 
+           : task.where("duedate <= ?", 
+                        date_group.blank? ? Date.today.end_of_day
+                        : 7.days.from_now.end_of_day)
     task = task.where(completed: completed)
     task = !priority.blank? ? task.where(priority: priority) : task
     task = task.order(duedate: :asc, priority: :desc, title: :asc)
-
   end
 
   # duedate checks
