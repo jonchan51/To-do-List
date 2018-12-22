@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   get 'welcome/index'
 
-  resources :tasks
+  resources :tasks do
+    resources :subtasks, shallow: true
+  end
+
   resources :categories, only: :destroy
 
   root 'welcome#index'

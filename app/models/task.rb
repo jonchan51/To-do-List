@@ -2,9 +2,11 @@ class Task < ApplicationRecord
   before_create { self.completed = 0 }
   has_many :categorisings, dependent: :delete_all
   has_many :categories, through: :categorisings
+  has_many :subtasks, dependent: :delete_all
   validates :title, presence: true
   validates :duedate, presence: true 
   validate  :duedate_is_in_the_future?
+  accepts_nested_attributes_for :subtasks
 
   # formatted list of categories associated with task
   def category_list

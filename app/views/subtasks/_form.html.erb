@@ -1,0 +1,33 @@
+<%= form_with(model: @subtask, url: (@subtask.new_record? ? [@task, @subtask]
+                                     : @subtask), local: true) do |f| %>
+  <% if @subtask.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@subtask.errors.count, "error") %> prohibited
+        this task from being saved:
+      </h2>
+      <ul>
+        <% @subtask.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <% if @subtask.persisted? %>
+      <%= f.label :completed %>
+      <%= f.check_box :completed %>
+    <% end %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+ 
+<% end %>
