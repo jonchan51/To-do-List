@@ -6,7 +6,6 @@ class Task < ApplicationRecord
   validates :title, presence: true
   validates :duedate, presence: true 
   validate  :duedate_is_in_the_future?
-  accepts_nested_attributes_for :subtasks
 
   # formatted list of categories associated with task
   def category_list
