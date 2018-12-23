@@ -5,11 +5,27 @@ class Task < ApplicationRecord
   has_many :subtasks, dependent: :delete_all
   validates :title, presence: true
   validates :duedate, presence: true 
-  validate  :duedate_is_in_the_future?
+  validate  :duedate_is_in_the_future?, on: :create
 
   # formatted list of categories associated with task
   def category_list
     categories.map(&:name).join(', ')
+  end
+
+  # repeat tasks daily for scheduler
+  def self.repeat_tasks
+    tasks = self.where(repeat: 1)
+    tasks.each do |t|
+      if t.completed
+        t.duedate = Date.current.end_of_day.change(sec: 0)
+        t.completed = 0
+        t.subtasks.each do |s|
+          s.completed = 0
+          s.save
+        end
+        t.save
+      end
+    end
   end
 
   def priority_list 

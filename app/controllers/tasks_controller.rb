@@ -48,6 +48,7 @@ class TasksController < ApplicationController
       params.require(:task).permit(:title, :category_id, :duedate,
                                    { :category_list => [] }, 
                                    :new_category_list, :completed,
-                                   :comments, :priority, :date_group)
+                                   :comments, :priority, :date_group,
+                                   :repeat)
     end
 end

@@ -13,6 +13,11 @@
   <%= @task.priority_level %>
 </p>
 
+<p>
+  <strong>Repeat Daily:</strong>
+  <%= @task.repeat ? 'Yes' : 'No' %>
+</p>
+
 <strong>Subtasks</strong>
 <%= link_to 'Add new subtask', new_task_subtask_path(@task) %><br>
 
