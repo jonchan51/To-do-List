@@ -43,6 +43,11 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
+  def toggle
+    @task = Task.find(params[:id])
+    @task.update_attributes(completed: params[:completed])
+  end
+
   private
     def task_params
       params.require(:task).permit(:title, :category_id, :duedate,

@@ -21,25 +21,33 @@
 <strong>Subtasks</strong>
 <%= link_to 'Add new subtask', new_task_subtask_path(@task) %><br>
 
-<table>
-  <tr>
-    <th>#</th>
-    <th>Title</th>
-    <th>Completed</th>
-  </tr>
-
-  <% @task.subtasks.each.with_index(1) do |subtask, index| %>
+<% if @task.subtasks.any? %>
+  <table>
     <tr>
-      <td><%= index %></td>
-      <td><%= subtask.title %></td>
-      <td><%= subtask.completed %></td>
-      <td><%= link_to 'Edit', edit_subtask_path(subtask) %></td>
-      <td><%= link_to 'Destroy', subtask_path(subtask),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+      <th>#</th>
+      <th>Title</th>
+      <th>Completed</th>
     </tr>
-  <% end %>
-</table>
+
+    <% @task.subtasks.each.with_index(1) do |subtask, index| %>
+      <tr>
+        <td><%= index %></td>
+        <td><%= subtask.title %></td>
+        <td><%= check_box_tag 'completed', subtask.id, subtask.completed,
+                  data: {
+                    remote: true,
+                    url: url_for(action: :toggle, controller: "subtasks",
+                                 id: subtask.id),
+                    method: "POST"
+                  } %></td>
+        <td><%= link_to 'Edit', edit_subtask_path(subtask) %></td>
+        <td><%= link_to 'Destroy', subtask_path(subtask),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
 
 <p>
   <strong>Comments:</strong>

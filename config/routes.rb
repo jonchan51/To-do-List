@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   get 'welcome/index'
 
   resources :tasks do
-    resources :subtasks, shallow: true
+    resources :subtasks, only: [:index, :new, :create]
+  end
+
+  resources :subtasks, only: [:show, :edit, :update, :destroy] do
+    member do
+      post 'toggle'
+    end
   end
 
   resources :categories, only: :destroy

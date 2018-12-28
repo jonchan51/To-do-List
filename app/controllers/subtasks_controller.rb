@@ -36,6 +36,11 @@ class SubtasksController < ApplicationController
     redirect_to task_path(@subtask.task_id)
   end
 
+  def toggle
+    @subtask = Subtask.find(params[:id])
+    @subtask.update_attributes(completed: params[:completed])
+  end
+
   private
     def subtask_params
       params.require(:subtask).permit(:title, :completed)
