@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :tasks do
     resources :subtasks, only: [:index, :new, :create]
+    member do
+      post 'toggle'
+    end
   end
 
   resources :subtasks, only: [:show, :edit, :update, :destroy] do

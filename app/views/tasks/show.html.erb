@@ -34,12 +34,7 @@
         <td><%= index %></td>
         <td><%= subtask.title %></td>
         <td><%= check_box_tag 'completed', subtask.id, subtask.completed,
-                  data: {
-                    remote: true,
-                    url: url_for(action: :toggle, controller: "subtasks",
-                                 id: subtask.id),
-                    method: "POST"
-                  } %></td>
+                  class: 'completed' %></td>
         <td><%= link_to 'Edit', edit_subtask_path(subtask) %></td>
         <td><%= link_to 'Destroy', subtask_path(subtask),
                 method: :delete,

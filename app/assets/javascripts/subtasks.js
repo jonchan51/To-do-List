@@ -10,12 +10,25 @@ function addEvent(element, evnt, func) {
 }
 
 function addEventByClass(classname, evnt, func) {
-  let class_elements = document.getElementsByClassName(classname);
-  for (let i = 0; i < class_elements.length; i++) {
+  var class_elements = document.getElementsByClassName(classname);
+  for (var i = 0; i < class_elements.length; i++) {
     addEvent(class_elements[i], evnt, func);
   }
 }
   
+function toggle() {
+  Rails.ajax({
+    type: 'POST',
+    url: '/subtasks/'+this.value+'/toggle',
+    data: "completed=" + this.checked
+  });
+}
+
+function test() {
+  alert(this.checked);
+}
+
 document.addEventListener("turbolinks:load", function() {
+  addEventByClass('completed', 'click', toggle);
 });
 
