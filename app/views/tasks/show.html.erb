@@ -21,6 +21,7 @@
 <strong>Subtasks</strong>
 <%= link_to 'Add new subtask', new_task_subtask_path(@task) %><br>
 
+<div id="listings">
 <% if @task.subtasks.any? %>
   <table>
     <tr>
@@ -41,8 +42,18 @@
                 data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </table>
+    <tr>
+      <%= form_with(model: @task.subtasks.build, 
+                    url: [@task, @task.subtasks.build], local: true) do |ff| %>
+        <td><%= @task.subtasks.count + 1 %></td>
+        <td><%= ff.text_field :title %></td>
+        <td><%= ff.check_box :completed %></td>
+        <td><%= ff.submit %></td>
+      <% end %>
+    </tr>
+    </table>
 <% end %>
+</div>
 
 <p>
   <strong>Comments:</strong>

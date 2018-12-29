@@ -48,7 +48,8 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.update_attributes(completed: params[:completed])
 
-    redirect_to tasks_path
+    filter_cookies
+    @tasks = Task.filter(filtering_params(params));
   end
   
   private
