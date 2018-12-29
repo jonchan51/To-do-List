@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.filter(params)
+    filter_cookies
+    @tasks = Task.filter(filtering_params(params))
   end
 
   def show
@@ -46,14 +47,30 @@ class TasksController < ApplicationController
   def toggle
     @task = Task.find(params[:id])
     @task.update_attributes(completed: params[:completed])
-  end
 
+    redirect_to tasks_path
+  end
+  
   private
     def task_params
-      params.require(:task).permit(:title, :category_id, :duedate,
+      params.require(:task).permit(:title, :duedate, :repeat,
                                    { :category_list => [] }, 
                                    :new_category_list, :completed,
-                                   :comments, :priority, :date_group,
-                                   :repeat)
+                                   :comments, :priority)
+    end
+
+    def filter_cookies
+      filter_vars = [:category_id, :date_group, :status, :priority_status]
+      filter_vars.each do |key|
+        if params[key]
+          cookies[key] = { value: params[key], expires: 1.day.from_now }
+        elsif cookies[key]
+          params[key] = cookies[key]
+        end
+      end
+    end
+
+    def filtering_params(params)
+      params.slice(:category_id, :date_group, :status, :priority_status)
     end
 end

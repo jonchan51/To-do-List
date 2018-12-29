@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Due Date</th>
+    <th>Priority</th>
+    <th>Completed</th>
+  </tr>
+ 
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.title %></td>
+      <td><%= task.duedate.strftime("%A, %d %b %y - %l:%M %P") %></td>
+      <td><%= task.priority_level %></td>
+      <td><%= check_box_tag 'task', task.id, task.completed,
+                class: 'completed' %></td>
+      <td><%= link_to 'Show', task_path(task) %></td>
+      <td><%= link_to 'Edit', edit_task_path(task) %></td>
+      <td><%= link_to 'Destroy', task_path(task),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+

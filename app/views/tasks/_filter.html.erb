@@ -8,12 +8,12 @@
   </p>
 
   <p>
-    <%= f.label :priority, "Priority: " %>
-    <%= f.select(:priority, options_for_select([['None', 0],
+    <%= f.label :priority_status, "Priority: " %>
+    <%= f.select(:priority_status, options_for_select([['None', 0],
                                                 ['Low', 1],
                                                 ['Medium', 2],
                                                 ['High', 3]],
-                                                params[:priority]),
+                                                params[:priority_status]),
                             { :include_blank => true }) %>
 
     <%= f.label :category_id, "Category: " %>
@@ -21,15 +21,16 @@
                             Category.all.order(name: :asc), :id, :name,
                             { :selected => params[:category_id], 
                               :include_blank => true }) %>
-    <%= f.label :completed, "Status: " %>
-    <%= f.select(:completed, options_for_select([['Active', 0], 
+    <%= f.label :status, "Status: " %>
+    <%= f.select(:status, options_for_select([['Active', 0], 
                                                  ['Completed', 1]],
-                                                params[:completed])) %>
+                                                params[:status])) %>
   </p>
 
   <p>
     <%= f.submit "Filter", name: nil %>
-    <%= link_to 'Reset', tasks_path %><br>
+    <%= link_to 'Reset', tasks_path(category_id: "", date_group: "",
+                                    status: 0, priority_status: "") %><br>
   </p>
 <% end %>
 

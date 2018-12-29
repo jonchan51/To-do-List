@@ -52,20 +52,23 @@ class Task < ApplicationRecord
     end
   end
 
-  # find a way to factor this out, a bit repetitive
-  def self.filter(params)
-    priority = params[:priority]
-    category_id = params[:category_id]
-    completed = params[:completed].blank? ? 0 : params[:completed]
-    date_group = params[:date_group]
+  scope :priority_status, ->(level) { where(priority: level) if level.present? }
+  scope :category_id, ->(id) { Category.find(id).tasks if id.present? }
+  scope :status, ->(status) { where(completed: (status.present? ? status : 0)) }
+  scope :date_group, ->(date_group) { 
+    where("duedate <= ?", (date_group.blank? ? Date.today.end_of_day
+            : 7.days.from_now.end_of_day)) unless date_group == 'Anytime' }
 
-    task = !category_id.blank? ? Category.find(category_id).tasks : Task
-    task = date_group == 'Anytime' ? task 
-           : task.where("duedate <= ?", 
-                        date_group.blank? ? Date.today.end_of_day
-                        : 7.days.from_now.end_of_day)
-    task = task.where(completed: completed)
-    task = !priority.blank? ? task.where(priority: priority) : task
+  # find a way to factor this out, a bit repetitive
+  def self.filter(filtering_params)
+    task = self.where(nil)
+    if filtering_params.empty?
+      task = task.where(completed: 0).where("duedate <= ?", Date.today.end_of_day)
+    else
+      filtering_params.each do |key, value|
+        task = task.public_send(key, value)
+      end
+    end
     task = task.order(duedate: :asc, priority: :desc, title: :asc)
   end
 

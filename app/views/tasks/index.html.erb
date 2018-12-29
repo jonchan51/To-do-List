@@ -10,30 +10,6 @@
       your tasks will not be categorized under this category anymore.' } %>
 <% end %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Due Date</th>
-    <th>Priority</th>
-    <th>Completed</th>
-  </tr>
- 
-  <% @tasks.each do |task| %>
-    <tr>
-      <td><%= task.title %></td>
-      <td><%= task.duedate.strftime("%A, %d %b %y - %l:%M %P") %></td>
-      <td><%= task.priority_level %></td>
-      <td><%= check_box_tag 'completed', task.id, task.completed,
-                data: {
-                  remote: true,
-                  url: url_for(action: :toggle, id: task.id),
-                  method: "POST"
-                } %></td>
-      <td><%= link_to 'Show', task_path(task) %></td>
-      <td><%= link_to 'Edit', edit_task_path(task) %></td>
-      <td><%= link_to 'Destroy', task_path(task),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-</table>
+<div id="all_tasks">
+<%= render 'listing' %>
+</div>
