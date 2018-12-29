@@ -7,12 +7,7 @@ function toggle() {
     type: 'POST',
     url: (name === 'subtask' ? '/subtasks/' : '/tasks/')
          + this.value + '/toggle',
-    data: "completed=" + this.checked,
-    success: function(event) {
-      if (name === 'task') {
-        console.log(event);
-      } else {}
-    } 
+    data: "completed=" + this.checked
   });
 }
 
@@ -22,9 +17,6 @@ function test() {
 
 document.addEventListener("turbolinks:load", function() {
   addEventByClass('completed', 'click', toggle);
-  addEvent(document.getElementById("all_tasks"), 'ajax:success', function() {
-    alert("works");
-  });
 });
 
 
