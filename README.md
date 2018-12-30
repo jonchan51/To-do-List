@@ -1,24 +1,16 @@
-# README
+# CVWO Assignment
+Chan Wai Hon Jonathan - A0189909E
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+1. Clone this repository
+2. Assuming you have Rails set up, run 
+```
+rails db:migrate
+rails server
+```
+3. Go to localhost:3000 on your browser.
 
-* Ruby version
+## Features
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Usage Guide
