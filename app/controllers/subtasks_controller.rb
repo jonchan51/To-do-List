@@ -22,10 +22,15 @@ class SubtasksController < ApplicationController
   def update
     @subtask = Subtask.find(params[:id])
 
-    if @subtask.update(subtask_params)
-      redirect_to task_path(@subtask.task_id)
-    else
-      render 'edit'
+    respond_to do |format|
+      format.html {
+        if @subtask.update(subtask_params)
+          redirect_to task_path(@subtask.task_id)
+        else
+          render 'edit'
+        end
+      }
+      format.js { @subtask.update(completed: params[:completed]) }
     end
   end
 
@@ -34,11 +39,6 @@ class SubtasksController < ApplicationController
     @subtask.destroy
 
     redirect_to task_path(@subtask.task_id)
-  end
-
-  def toggle
-    @subtask = Subtask.find(params[:id])
-    @subtask.update_attributes(completed: params[:completed])
   end
 
   private

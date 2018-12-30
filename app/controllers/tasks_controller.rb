@@ -30,10 +30,15 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
 
-    if @task.update(task_params)
-      redirect_to @task
-    else
-      render 'edit'
+    respond_to do |format|
+      format.html {
+        if @task.update(task_params)
+          redirect_to @task
+        else
+          render 'edit'
+        end
+      }
+      format.js { @task.update(completed: params[:completed]) }
     end
   end
 
@@ -44,14 +49,6 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
-  def toggle
-    @task = Task.find(params[:id])
-    @task.update_attributes(completed: params[:completed])
-
-    filter_cookies
-    @tasks = Task.filter(filtering_params(params));
-  end
-  
   private
     def task_params
       params.require(:task).permit(:title, :duedate, :repeat,

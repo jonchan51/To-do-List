@@ -11,7 +11,7 @@
       <td><%= task.title %></td>
       <td><%= task.duedate.strftime("%A, %d %b %y - %l:%M %P") %></td>
       <td><%= task.priority_level %></td>
-      <td><%= check_box_tag 'task', task.id, task.completed,
+      <td><%= check_box_tag 'tasks', task.id, task.completed,
                 class: 'completed' %></td>
       <td><%= link_to 'Show', task_path(task) %></td>
       <td><%= link_to 'Edit', edit_task_path(task) %></td>

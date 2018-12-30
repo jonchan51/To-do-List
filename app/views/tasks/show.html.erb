@@ -34,7 +34,7 @@
       <tr>
         <td><%= index %></td>
         <td><%= subtask.title %></td>
-        <td><%= check_box_tag 'subtask', subtask.id, subtask.completed,
+        <td><%= check_box_tag 'subtasks', subtask.id, subtask.completed,
                   class: 'completed' %></td>
         <td><%= link_to 'Edit', edit_subtask_path(subtask) %></td>
         <td><%= link_to 'Destroy', subtask_path(subtask),
