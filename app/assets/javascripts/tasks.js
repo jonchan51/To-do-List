@@ -18,10 +18,24 @@ function toggle(event) {
 function test(event) {
 }
 
+function editSubtask(event){
+  var clicked = event.target;
+  event.preventDefault();
+  var id = clicked.className.substring(26);
+  var elements = document.getElementsByClassName("subtask-hide-"+id);
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].style.display = "none";
+  }
+  elements = document.getElementsByClassName("hidden-form-"+id);
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].style.display = "inline";
+  }
+}
+
 document.addEventListener("turbolinks:load", function() {
-  // addEventByClass('completed', 'click', toggle);
   if (document.getElementById('listings')) {
     addEvent(document.getElementById('listings'), 'click', toggle);
+    addEventByClass("subtask-edit", 'click', editSubtask);
   } else {}
 });
 
