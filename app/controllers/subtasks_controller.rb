@@ -12,10 +12,19 @@ class SubtasksController < ApplicationController
     @task = Task.find(params[:task_id])
     @subtask = @task.subtasks.new(subtask_params)
 
-    if @subtask.save
-      redirect_to task_path(@task)
-    else
-      render 'new'
+    respond_to do |format|
+      format.html { 
+        if @subtask.save
+          redirect_to task_path(@task)
+        else
+          render 'tasks/show'
+        end }
+      format.js {
+        if @subtask.save
+          redirect_to task_path(@task)
+        else
+          render 'subtasks/error'
+        end }
     end
   end
 

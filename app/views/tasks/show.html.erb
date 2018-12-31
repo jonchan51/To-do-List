@@ -29,8 +29,8 @@
       <th>Title</th>
       <th>Completed</th>
     </tr>
-
     <% @task.subtasks.each.with_index(1) do |subtask, index| %>
+      <% break if index > @task.subtasks.count %>
       <%= form_with(model: subtask, url: subtask, local: true) do |f| %>
         <tr>
           <td><%= index %></td>
@@ -49,17 +49,12 @@
         </tr>
       <% end %>
     <% end %>
-    <tr>
-      <%= form_with(model: @task.subtasks.build, 
-                    url: [@task, @task.subtasks.build], local: true) do |ff| %>
-        <td><%= @task.subtasks.count + 1 %></td>
-        <td><%= ff.text_field :title %></td>
-        <td><%= ff.check_box :completed %></td>
-        <td><%= ff.submit %></td>
-      <% end %>
-    </tr>
-    </table>
+  </table>
 <% end %>
+</div>
+
+<div id="new_subtask">
+<%= render partial: '/subtasks/form' %>
 </div>
 
 <p>
