@@ -23,7 +23,7 @@ class SubtasksController < ApplicationController
         if @subtask.save
           redirect_to task_path(@task)
         else
-          render 'subtasks/error'
+          render 'error'
         end }
     end
   end

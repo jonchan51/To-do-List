@@ -22,35 +22,7 @@
 <%= link_to 'Add new subtask', new_task_subtask_path(@task) %><br>
 
 <div id="listings">
-<% if @task.subtasks.any? %>
-  <table>
-    <tr>
-      <th>#</th>
-      <th>Title</th>
-      <th>Completed</th>
-    </tr>
-    <% @task.subtasks.each.with_index(1) do |subtask, index| %>
-      <% break if index > @task.subtasks.count %>
-      <%= form_with(model: subtask, url: subtask, local: true) do |f| %>
-        <tr>
-          <td><%= index %></td>
-          <td><span class="subtask-hide-<%= subtask.id %>">
-            <%= subtask.title %></span>
-              <%= f.text_field :title, class: 'hidden-form-'+subtask.id.to_s %></td>
-          <td><%= check_box_tag 'subtasks', subtask.id, subtask.completed,
-                    class: 'completed' %></td>
-          <td>
-            <%= link_to 'Edit', edit_subtask_path(subtask), 
-              class: 'subtask-edit subtask-hide-'+subtask.id.to_s %>
-              <%= f.submit class: 'hidden-form-'+subtask.id.to_s %></td>
-          <td><%= link_to 'Destroy', subtask_path(subtask),
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </table>
-<% end %>
+  <%= render @task.subtasks %>
 </div>
 
 <div id="new_subtask">

@@ -1,10 +1,8 @@
-<%= form_with(model: [ @task, @task.subtasks.build ]) do |ff| %>
+<%= form_with(model: @subtask || [ @task, @task.subtasks.build ], 
+              url: @subtask ? @subtask.new_record? ? task_subtasks_path : subtask_path : '/tasks/'+@task.id.to_s+'/subtasks' ) do |ff| %>
 <p>
-  <%= @task.subtasks.count + 1 %>
   <%= ff.text_field :title, placeholder: "Do Laundry" %>
-  <% if @subtask && @subtask.persisted? %>
-    <%= ff.completed :completed %>
-  <% end %>
+  <%= ff.check_box :completed if @subtask && !@subtask.new_record? %>
   <%= ff.submit %>
 </p>
   <% if @subtask && @subtask.errors.any? %>
