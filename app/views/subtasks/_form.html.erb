@@ -1,7 +1,7 @@
 <%= form_with(model: [ @task, @task.subtasks.build ]) do |ff| %>
 <p>
   <%= @task.subtasks.count + 1 %>
-  <%= ff.text_field :title %>
+  <%= ff.text_field :title, placeholder: "Do Laundry" %>
   <% if @subtask && @subtask.persisted? %>
     <%= ff.completed :completed %>
   <% end %>
