@@ -39,7 +39,8 @@ class SubtasksController < ApplicationController
           render 'edit'
         end
       }
-      format.js { @subtask.update(completed: params[:completed]) }
+      format.js { @subtask.update(completed: params[:completed]) 
+                  redirect_to task_path(@subtask.task_id) }
     end
   end
 
