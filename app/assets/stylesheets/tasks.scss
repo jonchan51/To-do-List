@@ -2,6 +2,42 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.index_row {
+  padding: 1.5em;
+  border-bottom: 1px solid gray;
+  overflow: auto;
+}
+
+#task_listings {
+  .completed {
+    width: 5%;
+    float: left;
+  }
+
+  .task_title {
+    width: 35%;
+    float: left;
+    text-align: left;
+  }
+
+  .task_date {
+    width: 30%;
+    float: left;
+    text-align: center;
+  }
+
+  .task_priority {
+    width: 15%;
+    float: left;
+  }
+
+  .task_destroy {
+    width: 10%;
+    float: left;
+  }
+}
+
+
 [class^="hidden-form-"]{
   display: none;
 }

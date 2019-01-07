@@ -33,6 +33,10 @@ function editSubtask(event){
 }
 
 document.addEventListener("turbolinks:load", function() {
+  if (document.getElementById('task_listings')) {
+    addEvent(document.getElementById('task_listings'), 'click', toggle);
+  } else {}
+
   if (document.getElementById('listings')) {
     addEvent(document.getElementById('listings'), 'click', toggle);
     addEventByClass("subtask-edit", 'click', editSubtask);
