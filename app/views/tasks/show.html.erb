@@ -1,48 +1,31 @@
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
- 
-<p>
-  <strong>Due Date:</strong>
-  <%= @task.duedate.strftime("%A, %d %b %y - %l:%M %P") %>
-</p>
+<div class='index_row'>
+  <%= check_box_tag 'tasks', @task.id, @task.completed, class: 'completed' %>
+  <span class='task_title'><%= link_to @task.title, @task %></span>
+  <span class='task_date'>
+    <%= @task.duedate.strftime("%A, %d %b %y") %>
+  </span>
+  <span class='task_priority'><%= @task.priority_level %></span>
+  <span class='task_destroy'><%= link_to 'Destroy', task_path(@task),
+      method: :delete,
+      data: { confirm: 'Are you sure?' } %></span>
+</div>
 
-<p>
-  <strong>Priority:</strong>
-  <%= @task.priority_level %>
-</p>
-
-<p>
-  <strong>Repeat Daily:</strong>
-  <%= @task.repeat ? 'Yes' : 'No' %>
-</p>
-
-<strong>Subtasks</strong>
-<%= link_to 'Add new subtask', new_task_subtask_path(@task) %><br>
-
-<div id="listings">
+<div id="subtask_listings">
   <%= render @task.subtasks %>
 </div>
 
 <div id="new_subtask">
-<%= render partial: '/subtasks/form' %>
+  <%= render partial: '/subtasks/form' %>
 </div>
 
 <p>
-  <strong>Comments:</strong>
+  <strong>Comments: </strong>
   <%= @task.comments %>
 </p>
 
 <p>
-  <strong>Category:</strong>
-  <%= @task.category_list %>
+  <strong>Category: </strong>
+  <%=@task.category_list %>
 </p>
 
-<p>
-  <strong>Completed:</strong>
-  <%= @task.completed ? 'Yes' : 'No' %>
-</p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to 'Edit', edit_task_path(@task) %> | <%= link_to 'Back', tasks_path %>

@@ -37,9 +37,9 @@ document.addEventListener("turbolinks:load", function() {
     addEvent(document.getElementById('task_listings'), 'click', toggle);
   } else {}
 
-  if (document.getElementById('listings')) {
-    addEvent(document.getElementById('listings'), 'click', toggle);
-    addEventByClass("subtask-edit", 'click', editSubtask);
+  if (document.getElementById('subtask_listings')) {
+    addEvent(document.getElementById('subtask_listings'), 'click', toggle);
+    addEventByClass("subtask_edit", 'click', editSubtask);
   } else {}
 });
 

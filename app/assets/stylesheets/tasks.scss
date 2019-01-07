@@ -8,34 +8,54 @@
   overflow: auto;
 }
 
-#task_listings {
-  .completed {
-    width: 5%;
-    float: left;
-  }
-
-  .task_title {
-    width: 35%;
-    float: left;
-    text-align: left;
-  }
-
-  .task_date {
-    width: 30%;
-    float: left;
-    text-align: center;
-  }
-
-  .task_priority {
-    width: 15%;
-    float: left;
-  }
-
-  .task_destroy {
-    width: 10%;
-    float: left;
-  }
+.completed {
+  width: 5%;
+  float: left;
 }
+
+.task_title {
+  width: 35%;
+  float: left;
+  text-align: left;
+}
+
+.task_date {
+  width: 30%;
+  float: left;
+  text-align: center;
+}
+
+.task_priority {
+  width: 15%;
+  float: left;
+}
+
+.task_destroy {
+  width: 10%;
+  float: left;
+}
+
+.subtask_title {
+  width: 60%;
+  float: left;
+}
+
+.subtask_row {
+  padding: 1em;
+  border-bottom: 1px solid gray;
+  overflow: auto;
+}
+
+.subtask_edit {
+  width: 10%;
+  float: left;
+}
+
+.subtask_destroy {
+  width: 10%;
+  float: right;
+}
+
 
 
 [class^="hidden-form-"]{
