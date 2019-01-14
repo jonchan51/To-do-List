@@ -1,3 +1,5 @@
+<h1>Task Details</h1>
+
 <div class='index_row'>
   <%= check_box_tag 'tasks', @task.id, @task.completed, class: 'completed' %>
   <span class='task_title'><%= link_to @task.title, @task %></span>

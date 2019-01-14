@@ -1,7 +1,7 @@
 <%= form_with(model: @subtask || [ @task, @task.subtasks.build ], 
               url: @subtask ? @subtask.new_record? ? task_subtasks_path : subtask_path : '/tasks/'+@task.id.to_s+'/subtasks' ) do |ff| %>
 <p>
-  <%= ff.text_field :title, placeholder: "Do Laundry" %>
+  <%= ff.text_field :title, placeholder: "Do Laundry", class: 'subtask_title' %>
   <%= ff.check_box :completed if @subtask && !@subtask.new_record? %>
   <%= ff.submit %>
 </p>

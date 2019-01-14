@@ -1,72 +1,53 @@
 <%= form_with model: @task, local: true do |f| %>
- 
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@task.errors.count, "error") %> prohibited
-        this task from being saved:
-      </h2>
-      <ul>
-        <% @task.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
- 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
+  <div class='index_row'>
+    <% if @task.persisted? %>
+      <%= f.check_box :completed, class: 'completed' %>
+    <% end %>
+
+    <%= f.text_field :title, class: 'edit_task_title', placeholder: "Go Shopping" %>
+  </div>
 
   <p>
-    <%= f.label :duedate, "Due Date" %><br>
-    <%= f.datetime_select :duedate, start_year: Time.now.year, 
-      default: { :hour => 23, :minute => 59 }%>
+    <strong><%= f.label :duedate, "Due Date: " %></strong>
+    <%= f.datetime_select :duedate, start_year: Time.now.year,
+      default: { :hour => 23, :minute => 59 } %>
   </p>
-
+  
   <p>
-    <%= f.label :priority %><br>
+    <strong><%= f.label :priority, "Priority: " %></strong>
     <%= f.select :priority, [['None', 0], ['Low', 1],
                              ['Medium', 2], ['High', 3]] %>
   </p>
 
   <p>
-    <%= f.label :repeat, "Repeat Daily: " %><br>
+    <strong><%= f.label :repeat, "Repeat Daily: " %></strong>
     <%= f.check_box :repeat %>
   </p>
 
   <p>
-    <%= f.label :comments %><br>
+    <strong><%= f.label :comments, "Comments: " %></strong>
     <%= f.text_area :comments %>
   </p>
- 
+
   <p>
-    <%= f.label :category_list, "Select Categories" %><br>
-    <%= f.collection_select(:category_list, 
+    <strong><%= f.label :category_list, "Select Categories: " %></strong>
+    <%= f.collection_select(:category_list,
                             Category.all.order(name: :asc), :id, :name,
                             { :selected => @task.categories.map do |t|
-                                             t.id
-                                           end,
+                                              t.id
+                                              end,
                               :include_blank => true },
                             { :multiple => true }) %>
   </p>
 
   <p>
-  <%= f.label :new_category_list, "or create new Categories
-                                   (seperated by ',')" %><br>
+    <strong><%= f.label :new_category_list, "or create new Categories
+                                     (seperated by ','): " %></strong><br>
     <%= f.text_field :new_category_list %>
-  </p>
-
-  <p>
-    <% if @task.persisted? %>
-      <%= f.label :completed %>
-      <%= f.check_box :completed %>
-    <% end %>
   </p>
 
   <p>
     <%= f.submit %>
   </p>
- 
+
 <% end %>
