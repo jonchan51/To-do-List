@@ -14,7 +14,7 @@
 }
 
 .task_title {
-  width: 35%;
+  width: 50%;
   float: left;
   text-align: left;
 }
@@ -22,17 +22,19 @@
 .task_date {
   width: 30%;
   float: left;
-  text-align: center;
+  text-align: left;
 }
 
 .task_priority {
-  width: 15%;
+  width: 5%;
   float: left;
+  text-align: center;
 }
 
 .task_destroy {
-  width: 10%;
-  float: left;
+  width: 5%;
+  float: right;
+  text-align: center;
 }
 
 .subtask_title {
@@ -52,13 +54,30 @@
 }
 
 .subtask_destroy {
-  width: 10%;
+  width: 5%;
   float: right;
+  text-align: center;
 }
 
 .edit_task_title {
   width: 90%;
   float: left;
+}
+
+.high {
+  color: red;
+}
+
+.med {
+  color: orange;
+}
+
+.low {
+  color: yellow;
+}
+
+.none {
+  color: white;
 }
 
 

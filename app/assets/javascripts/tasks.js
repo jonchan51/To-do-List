@@ -32,6 +32,22 @@ function editSubtask(event){
   }
 }
 
+function replacePriority(elements) {
+  for (var i = 0; i < elements.length; i++) {
+    var name = elements[i].innerHTML;
+    elements[i].innerHTML = "<i class='fas fa-flag'></i>";
+    if (name == 'High') {
+      elements[i].className += ' high';
+    } else if (name == 'Medium') {
+      elements[i].className += ' med';
+    } else if (name == 'Low') {
+      elements[i].className += ' low';
+    } else {
+      elements[i].className += ' none';
+    }
+  }
+}
+
 document.addEventListener("turbolinks:load", function() {
   if (document.getElementById('task_listings')) {
     addEvent(document.getElementById('task_listings'), 'click', toggle);
@@ -40,6 +56,10 @@ document.addEventListener("turbolinks:load", function() {
   if (document.getElementById('subtask_listings')) {
     addEvent(document.getElementById('subtask_listings'), 'click', toggle);
     addEventByClass("subtask_edit", 'click', editSubtask);
+  } else {}
+
+  if (document.getElementsByClassName('task_priority)')) {
+    replacePriority(document.getElementsByClassName('task_priority'));
   } else {}
 });
 
