@@ -49,8 +49,8 @@ function replacePriority(elements) {
 }
 
 document.addEventListener("turbolinks:load", function() {
-  if (document.getElementById('task_listings')) {
-    addEvent(document.getElementById('task_listings'), 'click', toggle);
+  if (document.getElementById('task_listing')) {
+    addEvent(document.getElementById('task_listing'), 'click', toggle);
   } else {}
 
   if (document.getElementById('subtask_listings')) {
