@@ -38,7 +38,7 @@ function replacePriority(elements) {
     elements[i].innerHTML = "<i class='fas fa-flag'></i>";
     if (name == 'High') {
       elements[i].className += ' high';
-    } else if (name == 'Medium') {
+    } else if (name == 'Med') {
       elements[i].className += ' med';
     } else if (name == 'Low') {
       elements[i].className += ' low';

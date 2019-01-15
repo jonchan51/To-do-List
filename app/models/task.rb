@@ -29,7 +29,7 @@ class Task < ApplicationRecord
   end
 
   def priority_list 
-    ['None', 'Low', 'Medium', 'High']
+    ['None', 'Low', 'Med', 'High']
   end
 
   def priority_level
