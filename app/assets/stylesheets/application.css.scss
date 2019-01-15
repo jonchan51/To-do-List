@@ -17,11 +17,15 @@
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
+html {
+  background: #221E1D;
+}
+
 .container {
   box-sizing: border-box;
   width: 70%;
   margin: 3em auto 0;
-  background: lightblue;
+  background: #ECEAE0;
   border-radius: 7px;
   padding: 2em 1em;
 }

@@ -21,9 +21,13 @@
 
 
 // priority colors
+
+.priority {
+  text-shadow: 1px 1px 0 #000;
+}
+
 .priority.high {
     color: red;
-  
 }
 
 .priority.med {
@@ -35,7 +39,7 @@
 }
 
 .priority.none {
-  color: white;
+  color: black;
 }
 
 // task row
@@ -62,21 +66,6 @@
 
   .edit_title {
     width: 90%;
-  }
-}
-
-.subtask_row {
-  padding: 1em;
-  border-bottom: 1px solid gray;
-  overflow: auto;
-
-  .title {
-    width: 60%;
-  }
-
-  .edit {
-    width: 10%;
-    float: left;
   }
 }
 

@@ -4,3 +4,18 @@
 
 .subtask_row input:checked + span { text-decoration: line-through }
 
+.subtask_row {
+  padding: 1em;
+  border-bottom: 1px solid gray;
+  overflow: auto;
+
+  .title {
+    width: 60%;
+  }
+
+  .edit {
+    width: 10%;
+    float: left;
+  }
+}
+
