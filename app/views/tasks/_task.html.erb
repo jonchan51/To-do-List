@@ -1,9 +1,9 @@
 <div class='index_row'>
   <%= check_box_tag 'tasks', task.id, task.completed, class: 'completed' %>
-  <span class='task_title'><%= link_to task.title, task %></span>
-  <span class='task_date'><%= task.duedate.strftime("%A, %d %b %y") %></span>
-  <span class='task_priority'><%= task.priority_level %></span>
-  <span class='task_destroy'>
+  <span class='title'><%= link_to task.title, task %></span>
+  <span class='date'><%= task.duedate.strftime("%A, %d %b %y") %></span>
+  <span class='priority'><%= task.priority_level %></span>
+  <span class='destroy'>
     <%= link_to task_path(task),
       method: :delete,
       data: { confirm: 'Are you sure?' } do %>

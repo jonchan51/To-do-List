@@ -2,86 +2,83 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.index_row {
-  padding: 1.5em;
-  border-bottom: 1px solid gray;
-  overflow: auto;
-}
-
+// generic detail classes
 .completed {
   width: 5%;
   float: left;
 }
 
-.task_title {
-  width: 45%;
+.title {
   float: left;
   text-align: left;
 }
 
-.task_date {
-  width: 30%;
-  float: left;
-  text-align: left;
-}
-
-.task_priority {
-  width: 10%;
-  float: left;
-  text-align: center;
-}
-
-.task_destroy {
+.destroy {
   width: 5%;
   float: right;
   text-align: center;
 }
 
-.subtask_title {
-  width: 60%;
-  float: left;
+
+// priority colors
+.priority.high {
+    color: red;
+  
+}
+
+.priority.med {
+  color: orange;
+}
+
+.priority.low {
+  color: yellow;
+}
+
+.priority.none {
+  color: white;
+}
+
+// task row
+.index_row {
+  padding: 1.5em;
+  border-bottom: 1px solid gray;
+  overflow: auto;
+  
+  .title {
+    width: 45%;
+  }
+
+  .priority {
+    width: 10%;
+    float: left;
+    text-align: center;
+  }
+
+  .date {
+    width: 30%;
+    float: left;
+    text-align: left;
+  }
+
+  .edit_title {
+    width: 90%;
+  }
 }
 
 .subtask_row {
   padding: 1em;
   border-bottom: 1px solid gray;
   overflow: auto;
+
+  .title {
+    width: 60%;
+  }
+
+  .edit {
+    width: 10%;
+    float: left;
+  }
 }
-
-.subtask_edit {
-  width: 10%;
-  float: left;
-}
-
-.subtask_destroy {
-  width: 5%;
-  float: right;
-  text-align: center;
-}
-
-.edit_task_title {
-  width: 90%;
-  float: left;
-}
-
-.high {
-  color: red;
-}
-
-.med {
-  color: orange;
-}
-
-.low {
-  color: yellow;
-}
-
-.none {
-  color: white;
-}
-
-
-
 
 [class^="hidden-form-"]{
   display: none;

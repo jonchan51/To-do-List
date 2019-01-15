@@ -1,22 +1,25 @@
-<%= form_with(model: @subtask || [ @task, @task.subtasks.build ], 
-              url: @subtask ? @subtask.new_record? ? task_subtasks_path : subtask_path : '/tasks/'+@task.id.to_s+'/subtasks' ) do |ff| %>
-<p>
-  <%= ff.text_field :title, placeholder: "Do Laundry", class: 'subtask_title' %>
-  <%= ff.check_box :completed if @subtask && !@subtask.new_record? %>
-  <%= ff.submit %>
-</p>
-  <% if @subtask && @subtask.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@subtask.errors.count, "error") %> prohibited
-        this subtask from being saved:
-      </h2>
-      <ul>
-        <% @subtask.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+<div class="subtask_row">
+  <%= form_with(model: @subtask || [ @task, @task.subtasks.build ], 
+                url: @subtask ? @subtask.new_record? ? task_subtasks_path 
+            : subtask_path : '/tasks/'+@task.id.to_s+'/subtasks' ) do |ff| %>
+    <p>
+      <%= ff.check_box :completed if @subtask && !@subtask.new_record? %>
+      <%= ff.text_field :title, placeholder: "Do Laundry", 
+                                class: 'title' %>
+      <%= ff.submit %>
+    </p>
+    <% if @subtask && @subtask.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@subtask.errors.count, "error") %> prohibited
+          this subtask from being saved:
+        </h2>
+        <ul>
+          <% @subtask.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
-
+</div>

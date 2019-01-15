@@ -1,7 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-function toggle(event) {
+function markCompleted(event) {
   var clicked = event.target;
   if (clicked.className === 'completed') {
     var name = clicked.name;
@@ -15,13 +15,10 @@ function toggle(event) {
   } else {}
 }
 
-function test(event) {
-}
-
 function editSubtask(event){
   var clicked = event.target;
   event.preventDefault();
-  var id = clicked.className.substring(26);
+  var id = clicked.className.substring(18);
   var elements = document.getElementsByClassName("subtask-hide-"+id);
   for (var i = 0; i < elements.length; i++) {
     elements[i].style.display = "none";
@@ -50,16 +47,16 @@ function replacePriority(elements) {
 
 document.addEventListener("turbolinks:load", function() {
   if (document.getElementById('task_listing')) {
-    addEvent(document.getElementById('task_listing'), 'click', toggle);
+    addEvent(document.getElementById('task_listing'), 'click', markCompleted);
   } else {}
 
   if (document.getElementById('subtask_listings')) {
-    addEvent(document.getElementById('subtask_listings'), 'click', toggle);
-    addEventByClass("subtask_edit", 'click', editSubtask);
+    addEvent(document.getElementById('subtask_listings'), 'click', markCompleted);
+    addEventByClass("edit", 'click', editSubtask);
   } else {}
 
-  if (document.getElementsByClassName('task_priority)')) {
-    replacePriority(document.getElementsByClassName('task_priority'));
+  if (document.getElementsByClassName('priority)')) {
+    replacePriority(document.getElementsByClassName('priority'));
   } else {}
 });
 
