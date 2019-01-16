@@ -38,7 +38,13 @@ class TasksController < ApplicationController
           render 'edit'
         end
       }
-      format.js { @task.update(completed: params[:completed]) }
+      format.js { 
+        if params[:completed]
+          @task.update(completed: params[:completed]) 
+        elsif params[:priority]
+          @task.update(priority: params[:priority])
+        end 
+      }
     end
   end
 

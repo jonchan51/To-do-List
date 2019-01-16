@@ -1,6 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
+// mark tasks / subtasks as completed
 function markCompleted(event) {
   var clicked = event.target;
   if (clicked.className === 'completed') {
@@ -15,6 +16,7 @@ function markCompleted(event) {
   } else {}
 }
 
+// make edit subtask form visible
 function editSubtask(event){
   var clicked = event.target;
   event.preventDefault();
@@ -29,21 +31,36 @@ function editSubtask(event){
   }
 }
 
+// update priority level
 function replacePriority(elements) {
   for (var i = 0; i < elements.length; i++) {
     var name = elements[i].innerHTML;
     elements[i].innerHTML = "<i class='fas fa-flag'></i>";
+    var flag = elements[i].parentNode;
     if (name == 'High') {
-      elements[i].className += ' high';
+      flag.className += 'high';
     } else if (name == 'Med') {
-      elements[i].className += ' med';
+      flag.className += 'med';
     } else if (name == 'Low') {
-      elements[i].className += ' low';
+      flag.className += 'low';
     } else {
-      elements[i].className += ' none';
+      flag.className += 'none';
     }
   }
 }
+
+// change color of priority flag on click
+function changePriority(event) {
+  // ensure clicked variable is the link to extract the priority level from
+  // class
+  var clicked = event.target;
+  if (clicked.localName == 'i') {
+    clicked = clicked.parentNode;
+  } else {}
+  var priority = clicked.className;
+  clicked.parentNode.parentNode.className = priority;
+}
+
 
 document.addEventListener("turbolinks:load", function() {
   if (document.getElementById('task_listing')) {
@@ -52,11 +69,12 @@ document.addEventListener("turbolinks:load", function() {
 
   if (document.getElementById('subtask_listings')) {
     addEvent(document.getElementById('subtask_listings'), 'click', markCompleted);
-    addEventByClass("edit", 'click', editSubtask);
+    addEventByClass('edit', 'click', editSubtask);
   } else {}
 
-  if (document.getElementsByClassName('priority)')) {
-    replacePriority(document.getElementsByClassName('priority'));
+  if (document.getElementsByClassName('priority_flag)')) {
+    replacePriority(document.getElementsByClassName('priority_flag'));
+    addEventByClass('dropdown-content', 'click', changePriority);
   } else {}
 });
 

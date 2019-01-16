@@ -26,36 +26,36 @@
   text-shadow: 1px 1px 0 #000;
 }
 
-.priority.high {
-    color: red;
-}
-
-.priority.med {
-  color: orange;
-}
-
-.priority.low {
-  color: yellow;
-}
-
-.priority.none {
-  color: black;
-}
-
 // task row
 .index_row {
   padding: 1.5em;
   border-bottom: 1px solid gray;
   overflow: auto;
-  
+
   .title {
     width: 45%;
   }
 
   .priority {
     width: 10%;
-    float: left;
     text-align: center;
+    display: inline-block;
+
+    .high {
+      color: red;
+    }
+
+    .med {
+      color: orange;
+    }
+
+    .low {
+      color: yellow;
+    }
+
+    .none {
+      color: black;
+    }
   }
 
   .date {
@@ -66,6 +66,34 @@
 
   .edit_title {
     width: 90%;
+  }
+
+  .dropdown {
+    float: left;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    width: 6%;
+    box-shadow: 1px 1px 0 0 #000;
+    float: left;
+    text-align: center;
+
+    a {
+      display: block;
+      color: black;
+    }
+
+    a:hover {
+      background-color: lightgray;
+    }
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
   }
 }
 

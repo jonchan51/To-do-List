@@ -2,7 +2,29 @@
   <%= check_box_tag 'tasks', task.id, task.completed, class: 'completed' %>
   <span class='title'><%= link_to task.title, task %></span>
   <span class='date'><%= task.duedate.strftime("%A, %d %b %y") %></span>
-  <span class='priority'><%= task.priority_level %></span>
+  <div class='dropdown priority'>
+    <div>
+      <span class='priority_flag'><%= task.priority_level %></span>
+      <div class='dropdown-content'>
+        <%= link_to task_path(task, priority: "0"),
+          method: :patch, remote: true, class: "none" do %>
+          <i class='fas fa-flag'></i>
+        <% end %>
+        <%= link_to task_path(task, priority: "1"),
+          method: :patch, remote: true, class: "low" do %>
+          <i class='fas fa-flag'></i>
+        <% end %>
+        <%= link_to task_path(task, priority: "2"),
+          method: :patch, remote: true, class: "med" do %>
+          <i class='fas fa-flag'></i>
+        <% end %>
+        <%= link_to task_path(task, priority: "3"),
+          method: :patch, remote: true, class: "high" do %>
+          <i class='fas fa-flag'></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <span class='destroy'>
     <%= link_to task_path(task),
       method: :delete,
