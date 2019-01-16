@@ -58,9 +58,34 @@ function changePriority(event) {
     clicked = clicked.parentNode;
   } else {}
   var priority = clicked.className;
+  console.log(priority);
   clicked.parentNode.parentNode.className = priority;
 }
 
+function filterParams() {
+  var priority = document.getElementById('priority_status').value;
+  var cat = document.getElementById('category_id').value;
+  var status = document.getElementById('status').value;
+  var date_group = document.getElementById('date_group').value;
+  Rails.ajax({
+    type: 'GET',
+    url: '/tasks',
+    dataType: 'script',
+    data: 'category_id=' + cat + '&date_group=' + date_group
+          + '&status=' + status + '&priority_status=' + priority
+  });
+}
+
+function priorityFunc(){
+  replacePriority(document.getElementsByClassName('priority_flag'));
+  addEventByClass('dropdown-content', 'click', changePriority);
+}
+
+function filterFunc() {
+  document.getElementById('priority_status').onchange = filterParams;
+  document.getElementById('status').onchange = filterParams;
+  document.getElementById('category_id').onchange = filterParams;
+}
 
 document.addEventListener("turbolinks:load", function() {
   if (document.getElementById('task_listing')) {
@@ -72,9 +97,12 @@ document.addEventListener("turbolinks:load", function() {
     addEventByClass('edit', 'click', editSubtask);
   } else {}
 
-  if (document.getElementsByClassName('priority_flag)')) {
-    replacePriority(document.getElementsByClassName('priority_flag'));
-    addEventByClass('dropdown-content', 'click', changePriority);
+  if (document.getElementsByClassName('priority_flag')) {
+    priorityFunc();
+  } else {}
+
+  if (document.getElementById('filters')) {
+    filterFunc();
   } else {}
 });
 

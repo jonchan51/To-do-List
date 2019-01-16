@@ -2,7 +2,9 @@
 
 <%= link_to 'New Task', new_task_path %>
 
-<%= render 'filter' %>
+<div id='filters'>
+  <%= render 'filter' %>
+</div>
 
 <div id='task_listing'>
   <% @tasks.each do |task| %>

@@ -2,6 +2,11 @@ class TasksController < ApplicationController
   def index
     filter_cookies
     @tasks = Task.filter(filtering_params(params))
+    
+    respond_to do |format|
+      format.html 
+      format.js 
+    end
   end
 
   def show
