@@ -33,7 +33,7 @@
   overflow: auto;
 
   .title {
-    width: 45%;
+    width: 55%;
   }
 
   .priority {
@@ -59,9 +59,13 @@
   }
 
   .date {
-    width: 30%;
+    width: 20%;
     float: left;
     text-align: left;
+  }
+
+  .date.overdue {
+    color: red;
   }
 
   .edit_title {

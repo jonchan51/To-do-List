@@ -1,7 +1,8 @@
 <div class='index_row'>
   <%= check_box_tag 'tasks', task.id, task.completed, class: 'completed' %>
   <span class='title'><%= link_to task.title, task %></span>
-  <span class='date'><%= task.duedate.strftime("%A, %d %b %y") %></span>
+  <span class='date<%= task.duedate < Date.today ? ' overdue'
+    : '' %>'><%= task.duedate.strftime("%a, %d %b %y") %></span>
   <div class='dropdown priority'>
     <div>
       <span class='priority_flag'><%= task.priority_level %></span>
