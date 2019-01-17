@@ -11,16 +11,34 @@ function markCompleted(event) {
       url: '/' + name + '/'
            + clicked.value,
       dataType: 'script',
-      data: 'completed=' + clicked.checked
+      data: 'completed=' + clicked.checked,
+      success: function() {
+        var row = clicked.parentNode;
+        fadeOut(row);
+      }
     });
   } else {}
+}
+
+function fadeOut(elem) {
+  var fade = setInterval(function () {
+    if (!elem.style.opacity) {
+      elem.style.opacity = 1;
+    } else {}
+    if (elem.style.opacity > 0) {
+      elem.style.opacity -= 0.1;
+    } else {
+      clearInterval(fade)
+      elem.style.display = "none";
+    }
+  }, 50);
 }
 
 // make edit subtask form visible
 function editSubtask(event){
   var clicked = event.target;
   event.preventDefault();
-  var id = clicked.className.substring(18);
+  var id = clicked.classList[1].substring(13);
   var elements = document.getElementsByClassName("subtask-hide-"+id);
   for (var i = 0; i < elements.length; i++) {
     elements[i].style.display = "none";
@@ -38,13 +56,13 @@ function replacePriority(elements) {
     elements[i].innerHTML = "<i class='fas fa-flag'></i>";
     var flag = elements[i].parentNode;
     if (name == 'High') {
-      flag.className += 'high';
+      flag.className = 'high';
     } else if (name == 'Med') {
-      flag.className += 'med';
+      flag.className = 'med';
     } else if (name == 'Low') {
-      flag.className += 'low';
+      flag.className = 'low';
     } else {
-      flag.className += 'none';
+      flag.className = 'none';
     }
   }
 }
@@ -58,7 +76,6 @@ function changePriority(event) {
     clicked = clicked.parentNode;
   } else {}
   var priority = clicked.className;
-  console.log(priority);
   clicked.parentNode.parentNode.className = priority;
 }
 
