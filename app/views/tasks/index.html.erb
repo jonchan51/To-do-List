@@ -8,6 +8,6 @@
 
 <div id='task_listing'>
   <% @tasks.each do |task| %>
-    <%= render partial: 'task', object: task %>
+    <%= render partial: 'task', locals: { task: task, show: false } %>
   <% end %>
 </div>

@@ -1,5 +1,6 @@
 <div class='index_row'>
-  <%= check_box_tag 'tasks', task.id, task.completed, class: 'completed' %>
+  <%= check_box_tag 'tasks', task.id, task.completed, 
+    class: 'completed' + (show ? ' show' : '') %>
   <span class='title'><%= link_to task.title, task %></span>
   <span class='date<%= task.duedate < Date.today ? ' overdue'
     : '' %>'><%= task.duedate.strftime("%a, %d %b %y") %></span>

@@ -4,7 +4,7 @@
 // mark tasks / subtasks as completed
 function markCompleted(event) {
   var clicked = event.target;
-  if (clicked.className === 'completed') {
+  if (clicked.classList[0] === 'completed') {
     var name = clicked.name;
     Rails.ajax({
       type: 'PATCH',
@@ -13,8 +13,10 @@ function markCompleted(event) {
       dataType: 'script',
       data: 'completed=' + clicked.checked,
       success: function() {
-        var row = clicked.parentNode;
-        fadeOut(row);
+        if (clicked.classList[1] != 'show') {
+          var row = clicked.parentNode;
+          fadeOut(row);
+        } else {}
       }
     });
   } else {}

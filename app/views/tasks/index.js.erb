@@ -1,6 +1,6 @@
 document.getElementById('task_listing').innerHTML = 
   "<% @tasks.each do |task| %>\
-<%= j render partial: 'task', object: task %>\
+ <%= j render partial: 'task', locals: { task: task, show: false } %>\
 <% end %>";
 
 priorityFunc();
