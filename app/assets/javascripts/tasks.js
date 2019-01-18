@@ -49,6 +49,8 @@ function editSubtask(event){
   for (var i = 0; i < elements.length; i++) {
     elements[i].style.display = "inline";
   }
+  elements[0].focus();
+  elements[0].select();
 }
 
 // update priority level
@@ -104,6 +106,7 @@ function filterFunc() {
   document.getElementById('priority_status').onchange = filterParams;
   document.getElementById('status').onchange = filterParams;
   document.getElementById('category_id').onchange = filterParams;
+  document.getElementById('date_group').onchange = filterParams;
 }
 
 document.addEventListener("turbolinks:load", function() {

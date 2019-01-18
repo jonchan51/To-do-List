@@ -4,8 +4,8 @@
             : subtask_path : '/tasks/'+@task.id.to_s+'/subtasks' ) do |ff| %>
     <p>
       <%= ff.check_box :completed if @subtask && !@subtask.new_record? %>
-      <%= ff.text_field :title, placeholder: "Do Laundry", 
-                                class: 'title' %>
+      <%= ff.text_field :title, placeholder: "Do Laundry", autofocus: true,
+                                class: 'title', required: true %>
       <%= ff.submit %>
     </p>
     <% if @subtask && @subtask.errors.any? %>

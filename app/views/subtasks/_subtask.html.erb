@@ -4,7 +4,8 @@
         class: 'completed' %>
     <span class="title">
       <span class="subtask-hide-<%= subtask.id %>"><%= subtask.title %></span>
-      <%= f.text_field :title, class: 'hidden-form-'+subtask.id.to_s %>
+      <%= f.text_field :title, required: true, 
+                               class: 'hidden-form-'+subtask.id.to_s %>
     </span>
     
     <%= link_to 'Edit', edit_subtask_path(subtask),
