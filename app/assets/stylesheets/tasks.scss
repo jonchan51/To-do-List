@@ -11,6 +11,7 @@
 .title {
   float: left;
   text-align: left;
+  width: 55%;
 }
 
 .destroy {
@@ -19,11 +20,29 @@
   text-align: center;
 }
 
-
-// priority colors
+.date {
+  width: 20%;
+  float: left;
+  text-align: left;
+}
 
 .priority {
-  text-shadow: 1px 1px 0 #000;
+  width: 10%;
+  text-align: center;
+}
+
+#heading {
+  padding: 1.5em;
+  border-bottom: 1px double gray;
+
+  .completed {
+    width: 5.5%;
+    visibility: hidden;
+  }
+
+  .date {
+    width: 21.5%;
+  }
 }
 
 // task row
@@ -32,14 +51,9 @@
   border-bottom: 1px solid gray;
   overflow: auto;
 
-  .title {
-    width: 55%;
-  }
-
   .priority {
-    width: 10%;
-    text-align: center;
     display: inline-block;
+    text-shadow: 1px 1px 0 #000;
 
     .high {
       color: red;
@@ -56,12 +70,6 @@
     .none {
       color: black;
     }
-  }
-
-  .date {
-    width: 20%;
-    float: left;
-    text-align: left;
   }
 
   .date.overdue {
