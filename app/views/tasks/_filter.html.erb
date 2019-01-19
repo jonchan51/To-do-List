@@ -28,7 +28,7 @@
   </p>
 
   <p>
-    <%= f.submit "Filter", name: nil %>
+  <noscript><%= f.submit "Filter", name: nil %></noscript>
     <%= link_to 'Reset', tasks_path(category_id: "", date_group: "",
                                     status: 0, priority_status: "") %><br>
   </p>
