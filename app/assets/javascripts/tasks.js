@@ -97,6 +97,16 @@ function filterParams() {
   });
 }
 
+function categorySearch() {
+  console.log(this.value);
+  Rails.ajax({
+    type: 'GET',
+    url: '/categories',
+    dataType: 'script',
+    data: 'search=' + this.value
+  });
+}
+
 function priorityFunc(){
   replacePriority(document.getElementsByClassName('priority_flag'));
   addEventByClass('dropdown-content', 'click', changePriority);
@@ -125,6 +135,10 @@ document.addEventListener("turbolinks:load", function() {
 
   if (document.getElementById('filters')) {
     filterFunc();
+  } else {}
+
+  if (document.getElementById('category_search')) {
+    addEvent(document.getElementById('category_search'), 'keyup', categorySearch);
   } else {}
 });
 

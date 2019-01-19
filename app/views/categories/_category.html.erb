@@ -1,0 +1,12 @@
+<div class='index_row'>
+  <span class='name'><%= link_to category.name, 
+    tasks_path(category_id: category.id, date_group: 'Anytime') %></span>
+  <span class='count'><%= category.tasks.count %></span>
+  <span class='destroy'>
+    <%= link_to category_path(category),
+      method: :delete,
+      data: { confirm: 'Are you sure?' } do %>
+      <i class="fas fa-trash-alt"></i>
+    <% end %>
+  </span>
+</div>

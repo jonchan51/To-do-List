@@ -1,0 +1,4 @@
+document.getElementById('category_listing').innerHTML = 
+  "<% @categories.each do |category| %>\
+     <%= j render partial: 'category', object: category %>\
+   <% end %>";

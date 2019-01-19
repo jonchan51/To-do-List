@@ -1,4 +1,4 @@
-<h1>Listing tasks</h1>
+<h1>Tasks</h1>
 
 <%= link_to 'New Task', new_task_path %>
 
@@ -6,13 +6,13 @@
   <%= render 'filter' %>
 </div>
 
+<div id='heading'>
+  <span class='completed'>Completed</span>
+  <strong><span class='title'>Title</span></strong>
+  <strong><span class='date'>Date</span></strong>
+  <strong><span class='priority'>Priority</span></strong>
+</div>
 <div id='task_listing'>
-  <div id='heading'>
-    <span class='completed'>Completed</span>
-    <strong><span class='title'>Title</span></strong>
-    <strong><span class='date'>Date</span></strong>
-    <strong><span class='priority'>Priority</span></strong>
-  </div>
   <% @tasks.each do |task| %>
     <%= render partial: 'task', locals: { task: task, show: false } %>
   <% end %>

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :subtasks, only: [:show, :edit, :update, :destroy] do
   end
 
-  resources :categories, only: :destroy
+  resources :categories, only: [:index, :destroy]
 
   root 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

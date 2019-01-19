@@ -3,7 +3,7 @@
                 url: @subtask ? @subtask.new_record? ? task_subtasks_path 
             : subtask_path : '/tasks/'+@task.id.to_s+'/subtasks' ) do |ff| %>
     <p>
-      <%= ff.check_box :completed if @subtask && !@subtask.new_record? %>
+      <%= ff.check_box :completed, class: 'completed' if @subtask && !@subtask.new_record? %>
       <%= ff.text_field :title, placeholder: "Do Laundry", autofocus: true,
                                 class: 'title', required: true %>
       <%= ff.submit %>

@@ -1,0 +1,16 @@
+<h1>Categories</h1>
+
+<%= text_field_tag 'category_search', nil, 
+  autofocus: true, autocomplete: true, placeholder: "Search..." %>
+
+<%= link_to 'Reset', categories_path %>
+
+<div id='heading'>
+  <strong><span class='name'>Name</span></strong>
+  <strong><span class='count'>Count</span></strong>
+</div>
+<div id='category_listing'>
+  <% @categories.each do |category| %>
+    <%= render partial: 'category', object: category %>
+  <% end %>
+</div>
