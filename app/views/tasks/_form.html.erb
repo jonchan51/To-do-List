@@ -25,14 +25,16 @@
 
   <p>
     <strong><%= f.label :duedate, "Due Date: " %></strong>
-    <%= f.datetime_select :duedate, start_year: Time.now.year,
-      default: { :hour => 23, :minute => 59 } %>
+    <%= f.date_field :duedate, value: Date.today %>
+    <%= f.time_select :time_field, 
+      { default: { hour: (@task.persisted? ? @task.duedate.hour : 23),
+                   minute: (@task.persisted? ? @task.duedate.min : 59) } } %>
   </p>
   
   <p>
     <strong><%= f.label :priority, "Priority: " %></strong>
     <%= f.select :priority, [['None', 0], ['Low', 1],
-                             ['Medium', 2], ['High', 3]] %>
+                             ['Med', 2], ['High', 3]] %>
   </p>
 
   <p>

@@ -76,7 +76,7 @@ class TasksController < ApplicationController
       params.require(:task).permit(:title, :duedate, :repeat,
                                    { :category_list => [] }, 
                                    :new_category_list, :completed,
-                                   :comments, :priority)
+                                   :comments, :priority, :time_field)
     end
 
     def filter_cookies

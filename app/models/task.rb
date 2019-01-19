@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   before_create { self.completed = 0 }
+  before_save :combine_datetime_form_fields
   has_many :categorisings, dependent: :delete_all
   has_many :categories, through: :categorisings
   has_many :subtasks, dependent: :delete_all
@@ -10,6 +11,18 @@ class Task < ApplicationRecord
   def category_list
     categories.map(&:name).join(', ')
   end
+
+  def time_field=(time)
+    @duehour = time[4]
+    @duemin = time[5]
+  end
+
+  def combine_datetime_form_fields
+    if (@duehour and @duemin)
+      self.duedate = self.duedate.change({ hour: @duehour, min: @duemin })
+    end
+  end
+  
 
   # repeat tasks daily for scheduler
   def self.repeat_tasks
