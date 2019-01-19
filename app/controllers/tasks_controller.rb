@@ -23,12 +23,23 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
-
-    if @task.save
-      redirect_to @task
-    else
-      render 'new'
+    respond_to do |format|
+      format.html {
+        @task = Task.new(task_params)
+        if @task.save
+          redirect_to @task
+        else
+          render 'new'
+        end
+      }
+      format.js {
+        title, date, priority = params[:title], params[:date], params[:priority]
+        @task = Task.new(title: title, duedate: date, priority: priority,
+                         repeat: 0)
+        if @task.save
+          redirect_to tasks_path
+        end
+      }
     end
   end
 

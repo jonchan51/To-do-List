@@ -98,13 +98,38 @@ function filterParams() {
 }
 
 function categorySearch() {
-  console.log(this.value);
   Rails.ajax({
     type: 'GET',
     url: '/categories',
     dataType: 'script',
     data: 'search=' + this.value
   });
+}
+
+function newTask(event) {
+  var form = document.getElementById('task_form');
+  event.preventDefault();
+  form.style.display = "inline";
+  document.getElementById('form_submit').onclick = createTask;
+  document.getElementById('form_title').focus();
+}
+
+function createTask() {
+  var title = document.getElementById('form_title').value;
+  var date = document.getElementById('form_date').value;
+  var end_of_day = ' 23:59'
+  var datetime = date + end_of_day
+  var priority = document.getElementById('form_priority').value;
+  if (title != '') {
+    Rails.ajax({
+      type: 'POST',
+      url: '/tasks',
+      dataType: 'script',
+      data: 'title=' + title + '&date=' + datetime + '&priority=' + priority
+    });
+  } else {
+    alert("Title cannot be empty");
+  }
 }
 
 function priorityFunc(){
@@ -139,6 +164,10 @@ document.addEventListener("turbolinks:load", function() {
 
   if (document.getElementById('category_search')) {
     addEvent(document.getElementById('category_search'), 'keyup', categorySearch);
+  } else {}
+
+  if (document.getElementById('new_task')) {
+    addEvent(document.getElementById('new_task'), 'click', newTask);
   } else {}
 });
 

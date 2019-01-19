@@ -8,6 +8,12 @@
   float: left;
 }
 
+.inv_box {
+  float: left;
+  visibility: hidden;
+}
+
+
 .title {
   float: left;
   text-align: left;
@@ -65,7 +71,10 @@
 
   .priority {
     display: inline-block;
-    text-shadow: 1px 1px 0 #000;
+
+    .priority_flag, .dropdown-content {
+      text-shadow: 1px 1px 0 #000;
+    }
 
     .high {
       color: red;
@@ -121,6 +130,25 @@
   }
 }
 
+#task_form {
+  display: none;
+
+  .inv_box {
+    width: 5%;
+  }
+
+  .title {
+    width: 54%;
+  }
+
+  .date {
+    width: 20%;
+  }
+
+  .submit {
+    width: 5%;
+  }
+}
 [class^="hidden-form-"]{
   display: none;
 }

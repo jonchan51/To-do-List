@@ -5,7 +5,6 @@ class Task < ApplicationRecord
   has_many :subtasks, dependent: :delete_all
   validates :title, presence: true
   validates :duedate, presence: true 
-  validate  :duedate_is_in_the_future?, on: :create
 
   # formatted list of categories associated with task
   def category_list
@@ -70,12 +69,5 @@ class Task < ApplicationRecord
       end
     end
     task = task.order(duedate: :asc, priority: :desc, title: :asc)
-  end
-
-  # duedate checks
-  def duedate_is_in_the_future?
-    if (duedate <=> DateTime.now) != 1
-      errors.add(:duedate, 'must be in the future')
-    end
   end
 end

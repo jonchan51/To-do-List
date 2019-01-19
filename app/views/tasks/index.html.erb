@@ -1,6 +1,6 @@
 <h1>Tasks</h1>
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to 'New Task', new_task_path, id: 'new_task' %>
 
 <div id='filters'>
   <%= render 'filter' %>
@@ -13,6 +13,21 @@
   <strong><span class='priority'>Priority</span></strong>
 </div>
 <div id='task_listing'>
+  <div id='task_form'>
+    <div class='index_row'>
+      <span class='inv_box'>Inv</span>
+      <%= text_field_tag 'form_title', nil, placeholder: "Go Shopping", 
+        class: 'title' %>
+      <div class='date'>
+          <%= date_field_tag 'form_date', Date.today  %>
+      </div>
+      <%= select_tag 'form_priority', options_for_select([['None', 0], ['Low', 1],
+                                       ['Med', 2], ['High', 3]]), 
+        class: 'priority' %>
+      <%= button_tag '>', data: { disable_with: "Creating..." },
+        class: 'submit', id: 'form_submit' %>
+    </div>
+  </div>
   <% @tasks.each do |task| %>
     <%= render partial: 'task', locals: { task: task, show: false } %>
   <% end %>
