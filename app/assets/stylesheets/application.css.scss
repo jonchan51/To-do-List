@@ -26,7 +26,35 @@ html {
   width: 70%;
   margin: 3em auto 0;
   background: #ECEAE0;
-  border-radius: 7px;
   padding: 2em 1em;
 }
 
+nav {
+  margin-top: -2em;
+  margin-left: -1em;
+  margin-right: -1em;
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #807F7F;
+  }
+
+  li {
+    float: left;
+
+    a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    a:hover {
+      background-color: #555555;
+    }
+  }
+}
