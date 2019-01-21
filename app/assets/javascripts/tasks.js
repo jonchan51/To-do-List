@@ -71,6 +71,28 @@ function replacePriority(elements) {
   }
 }
 
+function editCategory(event) {
+  var clicked = event.target;
+  var name_ele = document.getElementById('category_name');
+  var submit_ele = document.getElementsByClassName('submit')[0];
+  submit_ele.value = "Edit Category";
+  submit_ele.id = clicked.value;
+  submit_ele.dataset.disableWith = "Edit Category";
+  submit_ele.onclick = updateCategory;
+  name_ele.value = clicked.parentNode.children[0].innerText;
+}
+
+function updateCategory(event) {
+  event.preventDefault();
+  var clicked = event.target;
+  Rails.ajax({
+    type: 'PATCH',
+    url: '/categories/' + clicked.id,
+    dataType: 'script',
+    data: 'name=' + document.getElementById('category_name').value
+  });
+}
+
 // change color of priority flag on click
 function changePriority(event) {
   // ensure clicked variable is the link to extract the priority level from
@@ -147,28 +169,32 @@ function filterFunc() {
 document.addEventListener("turbolinks:load", function() {
   if (document.getElementById('task_listing')) {
     addEvent(document.getElementById('task_listing'), 'click', markCompleted);
-  } else {}
+  } 
 
   if (document.getElementById('subtask_listings')) {
     addEvent(document.getElementById('subtask_listings'), 'click', markCompleted);
     addEventByClass('edit', 'click', editSubtask);
-  } else {}
+  } 
 
   if (document.getElementsByClassName('priority_flag')) {
     priorityFunc();
-  } else {}
+  }
 
   if (document.getElementById('filters')) {
     filterFunc();
-  } else {}
+  }
 
   if (document.getElementById('category_search')) {
     addEvent(document.getElementById('category_search'), 'keyup', categorySearch);
-  } else {}
+  }
 
   if (document.getElementById('new_task')) {
     addEvent(document.getElementById('new_task'), 'click', newTask);
-  } else {}
+  }
+
+  if (document.getElementsByClassName('edit')) {
+    addEventByClass('edit', 'click', editCategory);
+  }
 });
 
 

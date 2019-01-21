@@ -43,10 +43,20 @@
   text-align: center;
 }
 
+.edit {
+  width: 10%;
+  float: left;
+}
+
 .name {
   width: 70%;
   float: left;
   text-align: left;
+}
+
+.submit {
+  width: 25%;
+  float: right;
 }
 
 #heading {

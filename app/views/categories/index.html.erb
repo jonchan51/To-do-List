@@ -10,6 +10,12 @@
   <strong><span class='count'>Count</span></strong>
 </div>
 <div id='category_listing'>
+  <%= form_with model: Category.new, url: '/categories', id: 'form' do |f| %>
+    <div class='index_row'>
+      <%= f.text_field :name, placeholder: "Create new Category", class: 'title' %>
+      <%= f.submit 'Create Category', class: 'submit' %>
+    </div>
+  <% end %>
   <% @categories.each do |category| %>
     <%= render partial: 'category', object: category %>
   <% end %>
