@@ -25,7 +25,7 @@
 
   <p>
     <strong><%= f.label :duedate, "Due Date: " %></strong>
-    <%= f.date_field :duedate, value: Date.today %>
+    <%= f.date_field :duedate, value: @task.persisted? ? @task.duedate.to_date : Date.today %>
     <%= f.time_select :time_field, 
       { default: { hour: (@task.persisted? ? @task.duedate.hour : 23),
                    minute: (@task.persisted? ? @task.duedate.min : 59) } } %>
