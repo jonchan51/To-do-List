@@ -6,6 +6,9 @@
   <%= render 'filter' %>
 </div>
 
+<%= button_to "Clear Completed Tasks", clear_tasks_path,
+  data: { confirm: "Are you sure?" } %> 
+    
 <div id='heading'>
   <span class='completed'>Completed</span>
   <strong><span class='title'>Title</span></strong>

@@ -71,6 +71,12 @@ class TasksController < ApplicationController
     redirect_to tasks_path
   end
 
+  def clear
+    Task.where(completed: true).where(repeat: false).destroy_all
+
+    redirect_to tasks_path
+  end
+
   private
     def task_params
       params.require(:task).permit(:title, :duedate, :repeat,

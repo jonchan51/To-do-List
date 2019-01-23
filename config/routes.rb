@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :tasks do
     resources :subtasks, only: [:index, :new, :create]
+    collection do
+      post 'clear'
+    end
   end
 
   resources :subtasks, only: [:show, :edit, :update, :destroy] do
