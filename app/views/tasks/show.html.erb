@@ -1,3 +1,7 @@
+<br><span class='task_links'>
+  <%= link_to 'Edit', edit_task_path(@task) %> | <%= link_to 'Back', tasks_path %>
+</span>
+
 <h1>Task Details</h1>
 
 <div id="task_listing">
@@ -27,4 +31,3 @@
   <%=@task.category_list %>
 </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> | <%= link_to 'Back', tasks_path %>

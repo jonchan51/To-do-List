@@ -3,7 +3,11 @@
     class: 'completed' + (show ? ' show' : '') %>
   <span class='title'><%= link_to task.title, task %></span>
   <span class='date<%= task.duedate < Time.now ? ' overdue'
-    : '' %>'><%= task.duedate.strftime("%a, %d %b %y") %></span>
+  : '' %>'><%= task.duedate.strftime("%a, %d %b %y") %><br>
+  <% if !(task.duedate.hour == 23 and task.duedate.min == 59) %>
+    <%= task.duedate.strftime("%I:%M %p") %>
+  <% end %>
+  </span>
   <div class='dropdown priority'>
     <div>
       <span class='priority_flag'><%= task.priority_level %></span>
