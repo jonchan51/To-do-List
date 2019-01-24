@@ -10,12 +10,26 @@
 
   <p>
     <%= f.label :priority_status, "Priority: " %>
-    <%= f.select(:priority_status, options_for_select([['None', 0],
+    <noscript><%= f.select(:priority_status, options_for_select([['None', 0],
                                                 ['Low', 1],
                                                 ['Medium', 2],
                                                 ['High', 3]],
                                                 params[:priority_status]),
                             { :include_blank => "All" }) %>
+  </noscript>
+  <%= f.check_box :priority_status_0, 
+    checked: (params[:priority_status].include?("0") rescue false) %>
+  <span class='priority_flag none'>None</span>
+  <%= f.check_box :priority_status_1, 
+    checked: (params[:priority_status].include?("1") rescue false) %>
+  <span class='priority_flag low'>Low</span>
+  <%= f.check_box :priority_status_2,
+    checked: (params[:priority_status].include?("2") rescue false) %>
+  <span class='priority_flag med'>Med</span>
+  <%= f.check_box :priority_status_3,
+    checked: (params[:priority_status].include?("3") rescue false) %>
+  <span class='priority_flag high'>High</span><br>
+
 
     <%= f.label :category_id, "Category: " %>
     <%= f.collection_select(:category_id, 

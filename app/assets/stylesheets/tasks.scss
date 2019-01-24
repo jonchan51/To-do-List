@@ -64,6 +64,26 @@
   font-size: 1.5em;
 }
 
+.priority_flag {
+  text-shadow: 1px 1px 0 #000;
+}
+
+.priority_flag.high {
+  color: red;
+}
+
+.priority_flag.med {
+  color: orange;
+}
+
+.priority_flag.low {
+  color: yellow;
+}
+
+.priority_flag.none {
+  color: black;
+}
+
 #heading {
   padding: 1.5em;
   border-bottom: 1px double gray;

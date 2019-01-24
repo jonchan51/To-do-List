@@ -58,15 +58,14 @@ function replacePriority(elements) {
   for (var i = 0; i < elements.length; i++) {
     var name = elements[i].innerHTML;
     elements[i].innerHTML = "<i class='fas fa-flag'></i>";
-    var flag = elements[i].parentNode;
     if (name == 'High') {
-      flag.className = 'high';
+      elements[i].classList.add('high');
     } else if (name == 'Med') {
-      flag.className = 'med';
+      elements[i].classList.add('med');
     } else if (name == 'Low') {
-      flag.className = 'low';
-    } else {
-      flag.className = 'none';
+      elements[i].classList.add('low');
+    } else if (name == 'None') {
+      elements[i].classList.add('none');
     }
   }
 }
@@ -108,11 +107,23 @@ function changePriority(event) {
     clicked = clicked.parentNode;
   } else {}
   var priority = clicked.className;
-  clicked.parentNode.parentNode.className = priority;
+  var flag = clicked.parentNode.parentNode.children[0];
+  flag.classList.replace(flag.classList[1], priority);
 }
 
 function filterParams() {
-  var priority = document.getElementById('priority_status').value;
+  var priority = 
+    [document.getElementById('priority_status_0').checked,
+     document.getElementById('priority_status_1').checked,
+     document.getElementById('priority_status_2').checked,
+     document.getElementById('priority_status_3').checked];
+  var priority_string = '';
+  for (var i = 0; i < 4; i++) {
+    if (priority[i]) {
+      priority_string += '&priority_status[]=' + i;
+    }
+  }
+     
   var cat = document.getElementById('category_id').value;
   var status = document.getElementById('status').value;
   var date_group = document.getElementById('date_group').value;
@@ -121,7 +132,7 @@ function filterParams() {
     url: '/tasks',
     dataType: 'script',
     data: 'category_id=' + cat + '&date_group=' + date_group
-          + '&status=' + status + '&priority_status=' + priority
+          + '&status=' + status + priority_string
   });
 }
 
@@ -168,7 +179,10 @@ function priorityFunc(){
 }
 
 function filterFunc() {
-  document.getElementById('priority_status').onchange = filterParams;
+  document.getElementById('priority_status_0').onchange = filterParams;
+  document.getElementById('priority_status_1').onchange = filterParams;
+  document.getElementById('priority_status_2').onchange = filterParams;
+  document.getElementById('priority_status_3').onchange = filterParams;
   document.getElementById('status').onchange = filterParams;
   document.getElementById('category_id').onchange = filterParams;
   document.getElementById('date_group').onchange = filterParams;
