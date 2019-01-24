@@ -1,3 +1,4 @@
+<h2>Filters</h2>
 <%= form_with model: @category, method: :get, local: true do |f| %>
   <p>
     <%= f.label :date_group, "Due: " %>
@@ -14,13 +15,13 @@
                                                 ['Medium', 2],
                                                 ['High', 3]],
                                                 params[:priority_status]),
-                            { :include_blank => true }) %>
+                            { :include_blank => "All" }) %>
 
     <%= f.label :category_id, "Category: " %>
     <%= f.collection_select(:category_id, 
                             Category.all.order(name: :asc), :id, :name,
                             { :selected => params[:category_id], 
-                              :include_blank => true }) %>
+                              :include_blank => "All" }) %>
     <%= f.label :status, "Status: " %>
     <%= f.select(:status, options_for_select([['Active', 0], 
                                                  ['Completed', 1]],

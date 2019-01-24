@@ -1,13 +1,13 @@
 <h1>Tasks</h1>
 
-<%= link_to 'New Task', new_task_path, id: 'new_task' %>
-
 <div id='filters'>
   <%= render 'filter' %>
 </div>
 
 <%= button_to "Clear Completed Tasks", clear_tasks_path,
-  data: { confirm: "Are you sure?" } %> 
+  data: { confirm: "Are you sure?" } %><br>
+
+<%= link_to 'New Task', new_task_path, id: 'new_task' %>
     
 <div id='heading'>
   <span class='completed'>Completed</span>
@@ -18,8 +18,11 @@
 <div id='task_form'>
   <div class='index_row'>
     <span class='inv_box'>Inv</span>
-    <%= text_field_tag 'form_title', nil, placeholder: "Go Shopping", 
+    <%= text_field_tag 'form_title', nil, placeholder: "Name of Task", 
       class: 'title' %>
+    <%= select_tag 'form_category',
+    options_from_collection_for_select(@categories, "id", "name"),
+    include_blank: "Category", class: 'category' %>
     <div class='date'>
         <%= date_field_tag 'form_date', Date.today  %>
     </div>

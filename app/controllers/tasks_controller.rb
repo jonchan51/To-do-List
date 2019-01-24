@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   def index
     filter_cookies
     @tasks = Task.filter(filtering_params(params))
+    @categories = Category.all
     
     respond_to do |format|
       format.html 
@@ -33,9 +34,12 @@ class TasksController < ApplicationController
         end
       }
       format.js {
-        title, date, priority = params[:title], params[:date], params[:priority]
+        title, date, priority, category = params[:title], 
+          params[:date], params[:priority], params[:category]
         @task = Task.new(title: title, duedate: date, priority: priority,
                          repeat: 0)
+        @task.categories += Category.where(id: category)
+
         if @task.save
           redirect_to tasks_path
         end

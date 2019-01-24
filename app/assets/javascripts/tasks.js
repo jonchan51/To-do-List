@@ -138,6 +138,7 @@ function newTask(event) {
 
 function createTask() {
   var title = document.getElementById('form_title').value;
+  var category = document.getElementById('form_category').value;
   var date = document.getElementById('form_date').value;
   var end_of_day = ' 23:59'
   var datetime = date + end_of_day
@@ -148,6 +149,7 @@ function createTask() {
       url: '/tasks',
       dataType: 'script',
       data: 'title=' + title + '&date=' + datetime + '&priority=' + priority
+            + '&category=' + category
     });
   } else {
     alert("Title cannot be empty");
