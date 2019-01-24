@@ -80,17 +80,23 @@ function editCategory(event) {
   submit_ele.dataset.disableWith = "Edit Category";
   submit_ele.onclick = updateCategory;
   name_ele.value = clicked.parentNode.children[0].innerText;
+  name_ele.placeholder = "New Category name";
 }
 
 function updateCategory(event) {
   event.preventDefault();
   var clicked = event.target;
-  Rails.ajax({
-    type: 'PATCH',
-    url: '/categories/' + clicked.id,
-    dataType: 'script',
-    data: 'name=' + document.getElementById('category_name').value
-  });
+  var name = document.getElementById('category_name').value;
+  if (name == '') {
+    alert("Category name cannot be empty");
+  } else {
+    Rails.ajax({
+      type: 'PATCH',
+      url: '/categories/' + clicked.id,
+      dataType: 'script',
+      data: 'name=' + document.getElementById('category_name').value
+    });
+  }
 }
 
 // change color of priority flag on click
@@ -152,7 +158,7 @@ function createTask() {
             + '&category=' + category
     });
   } else {
-    alert("Title cannot be empty");
+    alert("Task name cannot be empty");
   }
 }
 
