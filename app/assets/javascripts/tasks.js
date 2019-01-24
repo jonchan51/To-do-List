@@ -123,6 +123,9 @@ function filterParams() {
       priority_string += '&priority_status[]=' + i;
     }
   }
+  if (priority_string == '') {
+    priority_string = '&priority_status=';
+  }
      
   var cat = document.getElementById('category_id').value;
   var status = document.getElementById('status').value;
