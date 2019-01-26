@@ -1,3 +1,5 @@
+<%= link_to 'New Task', new_task_path, id: 'new_task', class: 'task_links' %>
+
 <h1>Tasks</h1>
 
 <div id='filters'>
@@ -7,7 +9,6 @@
 <%= button_to "Clear Completed Tasks", clear_tasks_path,
   data: { confirm: "Are you sure?" } %><br>
 
-<%= link_to 'New Task', new_task_path, id: 'new_task' %>
     
 <div id='heading'>
   <span class='completed'>Completed</span>
