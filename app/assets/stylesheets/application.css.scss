@@ -21,6 +21,10 @@ html {
   background: #221E1D;
 }
 
+a:visited {
+  color: blue;
+}
+
 .container {
   box-sizing: border-box;
   width: 70%;
@@ -51,6 +55,10 @@ nav {
       text-align: center;
       padding: 14px 16px;
       text-decoration: none;
+    }
+
+    a:visited {
+      color: white;
     }
 
     a:hover {
