@@ -1,17 +1,17 @@
 <div class="subtask_row">
   <%= form_with model: subtask, url: subtask, local: true do |f| %>
     <%= check_box_tag 'subtasks', subtask.id, subtask.completed, 
-        class: 'completed' %>
+        class: "completed" %>
     <span class="title">
-      <span class="subtask-hide-<%= subtask.id %>"><%= subtask.title %></span>
+      <span class="subtask_hide_<%= subtask.id %>"><%= subtask.title %></span>
       <%= f.text_field :title, required: true, 
-                               class: 'hidden-form-'+subtask.id.to_s %>
+                               class: "hidden_form_"+subtask.id.to_s %>
     </span>
     
     <%= link_to 'Edit', edit_subtask_path(subtask),
-        class: 'edit subtask-hide-'+subtask.id.to_s %>
-    <%= f.submit class: 'hidden-form-'+subtask.id.to_s %>
-    <span class='destroy'>
+        class: "edit subtask_hide_"+subtask.id.to_s %>
+    <%= f.submit class: "hidden_form_"+subtask.id.to_s %>
+    <span class="destroy">
       <%= link_to subtask_path(subtask),
         method: :delete,
         data: { confirm: 'Are you sure?' } do %>

@@ -5,18 +5,18 @@
 
 <%= link_to 'Reset', categories_path %>
 
-<div id='heading'>
-  <strong><span class='name'>Name</span></strong>
-  <strong><span class='count'>Count</span></strong>
+<div id="heading">
+  <strong><span class="name">Name</span></strong>
+  <strong><span class="count">Count</span></strong>
 </div>
 <%= form_with model: Category.new, url: '/categories', id: 'form' do |f| %>
-  <div class='index_row'>
-    <%= f.text_field :name, placeholder: "Create new Category", class: 'title',
+  <div class="index_row">
+    <%= f.text_field :name, placeholder: "Create new Category", class: "title",
         required: true %>
-    <%= f.submit 'Create Category', class: 'submit' %>
+    <%= f.submit 'Create Category', class: "submit" %>
   </div>
 <% end %>
-<div id='category_listing'>
+<div id="category_listing">
   <% @categories.each do |category| %>
     <%= render partial: 'category', object: category %>
   <% end %>

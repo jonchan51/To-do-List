@@ -10,13 +10,6 @@
 
   <p>
     <%= f.label :priority_status, "Priority: " %>
-    <noscript><%= f.select(:priority_status, options_for_select([['None', 0],
-                                                ['Low', 1],
-                                                ['Medium', 2],
-                                                ['High', 3]],
-                                                params[:priority_status]),
-                            { :include_blank => "All" }) %>
-  </noscript>
   <%= f.check_box :priority_status_0, 
     checked: (params[:priority_status].include?("0") rescue false) %>
   <span class='priority_flag none'>None</span>

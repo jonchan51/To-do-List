@@ -17,9 +17,6 @@
           <li><%= link_to 'Categories', categories_path %></li>
         </ul>
       </nav>
-      <% flash.each do |message_type, message| %>
-        <%= message %>
-      <% end %>
       <%= yield %>
     </div>
     <%= debug(params) if Rails.env.development? %>

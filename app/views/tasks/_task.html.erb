@@ -1,38 +1,38 @@
-<div class='index_row'>
+<div class="index_row">
   <%= check_box_tag 'tasks', task.id, task.completed, 
-    class: 'completed' + (show ? ' show' : '') %>
-  <span class='title'><%= link_to task.title, task, 
+    class: "completed" + (show ? " show" : "") %>
+  <span class="title"><%= link_to task.title, task, 
     title: (task.comments.blank? ? "No Comments" : task.comments) %></span>
-  <span class='date<%= task.duedate < Time.now ? ' overdue'
-  : '' %>'><%= task.duedate.strftime("%a, %d %b %y") %><br>
+  <span class="date<%= task.duedate < Time.now ? " overdue"
+  : "" %>"><%= task.duedate.strftime("%a, %d %b %y") %><br>
   <% if !(task.duedate.hour == 23 and task.duedate.min == 59) %>
     <%= task.duedate.strftime("%I:%M %p") %>
   <% end %>
   </span>
-  <div class='dropdown priority'>
+  <div class="dropdown priority">
     <div>
-      <span class='priority_flag'><%= task.priority_level %></span>
-      <div class='dropdown-content'>
+      <span class="priority_flag"><%= task.priority_level %></span>
+      <div class="dropdown_content">
         <%= link_to task_path(task, priority: "0"),
           method: :patch, remote: true, class: "none" do %>
-          <i class='fas fa-flag'></i>
+          <i class="fas fa-flag"></i>
         <% end %>
         <%= link_to task_path(task, priority: "1"),
           method: :patch, remote: true, class: "low" do %>
-          <i class='fas fa-flag'></i>
+          <i class="fas fa-flag"></i>
         <% end %>
         <%= link_to task_path(task, priority: "2"),
           method: :patch, remote: true, class: "med" do %>
-          <i class='fas fa-flag'></i>
+          <i class="fas fa-flag"></i>
         <% end %>
         <%= link_to task_path(task, priority: "3"),
           method: :patch, remote: true, class: "high" do %>
-          <i class='fas fa-flag'></i>
+          <i class="fas fa-flag"></i>
         <% end %>
       </div>
     </div>
   </div>
-  <span class='destroy'>
+  <span class="destroy">
     <%= link_to task_path(task),
       method: :delete,
       data: { confirm: 'Are you sure?' } do %>

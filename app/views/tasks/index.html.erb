@@ -1,8 +1,8 @@
-<%= link_to 'New Task', new_task_path, id: 'new_task', class: 'task_links' %>
+<%= link_to 'New Task', new_task_path, id: "new_task", class: "task_links" %>
 
 <h1>Tasks</h1>
 
-<div id='filters'>
+<div id="filters">
   <%= render 'filter' %>
 </div>
 
@@ -10,31 +10,29 @@
   data: { confirm: "Are you sure?" } %><br>
 
     
-<div id='heading'>
-  <span class='completed'>Completed</span>
-  <strong><span class='title'>Title</span></strong>
-  <strong><span class='date'>Due Date</span></strong>
-  <strong><span class='priority'>Priority</span></strong>
+<div id="heading">
+  <span class="completed">Completed</span>
+  <strong><span class="title">Title</span></strong>
+  <strong><span class="date">Due Date</span></strong>
+  <strong><span class="priority">Priority</span></strong>
 </div>
-<div id='task_form'>
-  <div class='index_row'>
-    <span class='inv_box'>Inv</span>
+<div id="task_form">
+  <div class="index_row">
+    <span class="inv_box">Inv</span>
     <%= text_field_tag 'form_title', nil, placeholder: "Name of Task", 
-      class: 'title' %>
+      class: "title" %>
     <%= select_tag 'form_category',
     options_from_collection_for_select(@categories, "id", "name"),
-    include_blank: "Choose a Category", class: 'category' %>
-    <div class='date'>
-        <%= date_field_tag 'form_date', Date.today  %>
-    </div>
+    include_blank: "Choose a Category", class: "category" %>
+    <%= date_field_tag 'form_date', Date.today, class: "date" %>
     <%= select_tag 'form_priority', options_for_select([['None', 0], ['Low', 1],
                                      ['Med', 2], ['High', 3]]), 
-      class: 'priority' %>
+      class: "priority" %>
     <%= button_tag '>', data: { disable_with: "Creating..." },
-      class: 'submit', id: 'form_submit' %>
+      class: "submit", id: "form_submit" %>
   </div>
 </div>
-<div id='task_listing'>
+<div id="task_listing">
   <% @tasks.each do |task| %>
     <%= render partial: 'task', locals: { task: task, show: false } %>
   <% end %>

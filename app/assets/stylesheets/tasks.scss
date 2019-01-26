@@ -13,7 +13,6 @@
   visibility: hidden;
 }
 
-
 .title {
   float: left;
   text-align: left;
@@ -35,23 +34,6 @@
 .priority {
   width: 10%;
   text-align: center;
-}
-
-.count {
-  width: 10%;
-  float: left;
-  text-align: center;
-}
-
-.edit {
-  width: 10%;
-  float: left;
-}
-
-.name {
-  width: 70%;
-  float: left;
-  text-align: left;
 }
 
 .submit {
@@ -108,7 +90,8 @@
   .priority {
     display: inline-block;
 
-    .priority_flag, .dropdown-content {
+    .priority_flag, 
+    .dropdown-content {
       text-shadow: 1px 1px 0 #000;
     }
 
@@ -142,7 +125,7 @@
     display: inline-block;
   }
 
-  .dropdown-content {
+  .dropdown_content {
     display: none;
     position: absolute;
     background-color: white;
@@ -161,7 +144,7 @@
     }
   }
 
-  .dropdown:hover .dropdown-content {
+  .dropdown:hover .dropdown_content {
     display: block;
   }
 }
@@ -190,7 +173,7 @@
     width: 5%;
   }
 }
-[class^="hidden-form-"]{
+[class^="hidden_form_"]{
   display: none;
 }
 

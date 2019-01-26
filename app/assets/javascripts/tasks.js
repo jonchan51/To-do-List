@@ -41,11 +41,11 @@ function editSubtask(event){
   var clicked = event.target;
   event.preventDefault();
   var id = clicked.classList[1].substring(13);
-  var elements = document.getElementsByClassName("subtask-hide-"+id);
+  var elements = document.getElementsByClassName("subtask_hide_"+id);
   for (var i = 0; i < elements.length; i++) {
     elements[i].style.display = "none";
   }
-  elements = document.getElementsByClassName("hidden-form-"+id);
+  elements = document.getElementsByClassName("hidden_form_"+id);
   for (var i = 0; i < elements.length; i++) {
     elements[i].style.display = "inline";
   }
@@ -178,7 +178,7 @@ function createTask() {
 
 function priorityFunc(){
   replacePriority(document.getElementsByClassName('priority_flag'));
-  addEventByClass('dropdown-content', 'click', changePriority);
+  addEventByClass('dropdown_content', 'click', changePriority);
 }
 
 function filterFunc() {
