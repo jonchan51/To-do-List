@@ -22,7 +22,7 @@
       class: 'title' %>
     <%= select_tag 'form_category',
     options_from_collection_for_select(@categories, "id", "name"),
-    include_blank: "Category", class: 'category' %>
+    include_blank: "Choose a Category", class: 'category' %>
     <div class='date'>
         <%= date_field_tag 'form_date', Date.today  %>
     </div>

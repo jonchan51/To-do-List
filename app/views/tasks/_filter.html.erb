@@ -35,11 +35,9 @@
     <%= f.collection_select(:category_id, 
                             Category.all.order(name: :asc), :id, :name,
                             { :selected => params[:category_id], 
-                              :include_blank => "All" }) %>
-    <%= f.label :status, "Status: " %>
-    <%= f.select(:status, options_for_select([['Active', 0], 
-                                                 ['Completed', 1]],
-                                                params[:status])) %>
+                              :include_blank => "All" }) %><br>
+    <%= f.label :status, "Completed: " %>
+    <%= f.check_box :status, checked: (params[:status] == "0" ? false : true) %>
   </p>
 
   <p>

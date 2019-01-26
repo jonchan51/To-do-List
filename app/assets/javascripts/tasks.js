@@ -128,7 +128,7 @@ function filterParams() {
   }
      
   var cat = document.getElementById('category_id').value;
-  var status = document.getElementById('status').value;
+  var status = document.getElementById('status').checked;
   var date_group = document.getElementById('date_group').value;
   Rails.ajax({
     type: 'GET',
