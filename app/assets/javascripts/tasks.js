@@ -22,6 +22,7 @@ function markCompleted(event) {
   } else {}
 }
 
+// fadeout row when task is marked complete
 function fadeOut(elem) {
   var fade = setInterval(function () {
     if (!elem.style.opacity) {
@@ -53,7 +54,7 @@ function editSubtask(event){
   elements[0].select();
 }
 
-// update priority level
+// change priority level to flag with colors
 function replacePriority(elements) {
   for (var i = 0; i < elements.length; i++) {
     var name = elements[i].innerHTML;
@@ -70,34 +71,6 @@ function replacePriority(elements) {
   }
 }
 
-function editCategory(event) {
-  var clicked = event.target;
-  var name_ele = document.getElementById('category_name');
-  var submit_ele = document.getElementsByClassName('submit')[0];
-  submit_ele.value = "Edit Category";
-  submit_ele.id = clicked.value;
-  submit_ele.dataset.disableWith = "Edit Category";
-  submit_ele.onclick = updateCategory;
-  name_ele.value = clicked.parentNode.children[0].innerText;
-  name_ele.placeholder = "New Category name";
-}
-
-function updateCategory(event) {
-  event.preventDefault();
-  var clicked = event.target;
-  var name = document.getElementById('category_name').value;
-  if (name == '') {
-    alert("Category name cannot be empty");
-  } else {
-    Rails.ajax({
-      type: 'PATCH',
-      url: '/categories/' + clicked.id,
-      dataType: 'script',
-      data: 'name=' + document.getElementById('category_name').value
-    });
-  }
-}
-
 // change color of priority flag on click
 function changePriority(event) {
   // ensure clicked variable is the link to extract the priority level from
@@ -111,6 +84,7 @@ function changePriority(event) {
   flag.classList.replace(flag.classList[1], priority);
 }
 
+// filter onchange in index
 function filterParams() {
   var priority = 
     [document.getElementById('priority_status_0').checked,
@@ -139,15 +113,7 @@ function filterParams() {
   });
 }
 
-function categorySearch() {
-  Rails.ajax({
-    type: 'GET',
-    url: '/categories',
-    dataType: 'script',
-    data: 'search=' + this.value
-  });
-}
-
+// create new task from index
 function newTask(event) {
   var form = document.getElementById('task_form');
   event.preventDefault();
@@ -181,6 +147,7 @@ function priorityFunc(){
   addEventByClass('dropdown_content', 'click', changePriority);
 }
 
+// insert onchange function
 function filterFunc() {
   document.getElementById('priority_status_0').onchange = filterParams;
   document.getElementById('priority_status_1').onchange = filterParams;
@@ -191,6 +158,7 @@ function filterFunc() {
   document.getElementById('date_group').onchange = filterParams;
 }
 
+// add event listeners to respective elements
 document.addEventListener("turbolinks:load", function() {
   if (document.getElementById('task_listing')) {
     addEvent(document.getElementById('task_listing'), 'click', markCompleted);

@@ -12,6 +12,7 @@ class Task < ApplicationRecord
     categories.map(&:name).join(', ')
   end
 
+  # for time input when editing tasks
   def time_field=(time)
     @duehour = time[4]
     @duemin = time[5]
@@ -24,7 +25,7 @@ class Task < ApplicationRecord
   end
   
 
-  # repeat tasks daily for scheduler
+  # repeat tasks daily for heroku scheduler
   def self.repeat_tasks
     tasks = self.where(repeat: 1)
     tasks.each do |t|
@@ -40,6 +41,7 @@ class Task < ApplicationRecord
     end
   end
 
+  # priority number levels
   def priority_list 
     ['None', 'Low', 'Med', 'High']
   end
@@ -71,7 +73,7 @@ class Task < ApplicationRecord
     where("duedate <= ?", (date_group.blank? ? Date.today.end_of_day
             : 7.days.from_now.end_of_day)) unless date_group == 'Anytime' }
 
-  # find a way to factor this out, a bit repetitive
+  # filtering in index
   def self.filter(filtering_params)
     task = self.where(nil)
     if filtering_params.empty?
