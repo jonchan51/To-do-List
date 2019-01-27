@@ -30,7 +30,7 @@
                             { :selected => params[:category_id], 
                               :include_blank => "All" }) %><br>
     <%= f.label :status, "Completed: " %>
-    <%= f.check_box :status, checked: (params[:status] == "0" ? false : true) %>
+    <%= f.check_box :status, checked: (params[:status] == 'true' ? true : false) %>
   </p>
 
   <p>
